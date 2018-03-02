@@ -12,6 +12,7 @@
 		CEC17E04204A194F0075351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E02204A194F0075351E /* Main.storyboard */; };
 		CEC17E06204A194F0075351E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E05204A194F0075351E /* Assets.xcassets */; };
 		CEC17E09204A194F0075351E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E07204A194F0075351E /* LaunchScreen.storyboard */; };
+		CEC17E11204A19880075351E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E10204A19880075351E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		CEC17E05204A194F0075351E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC17E08204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC17E0A204A194F0075351E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC17E10204A19880075351E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				CEC17E05204A194F0075351E /* Assets.xcassets */,
 				CEC17E07204A194F0075351E /* LaunchScreen.storyboard */,
 				CEC17E0A204A194F0075351E /* Info.plist */,
+				CEC17E10204A19880075351E /* GoogleService-Info.plist */,
 			);
 			path = LocalWeen;
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC17E09204A194F0075351E /* LaunchScreen.storyboard in Resources */,
+				CEC17E11204A19880075351E /* GoogleService-Info.plist in Resources */,
 				CEC17E06204A194F0075351E /* Assets.xcassets in Resources */,
 				CEC17E04204A194F0075351E /* Main.storyboard in Resources */,
 			);
