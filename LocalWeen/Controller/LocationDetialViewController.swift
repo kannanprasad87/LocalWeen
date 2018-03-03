@@ -29,7 +29,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        cosmosView.rating = 0
         guard let coordinate = locationManager.location?.coordinate else {
             print("Can't get user location")
             return
