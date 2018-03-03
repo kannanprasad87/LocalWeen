@@ -10,26 +10,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weclome View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeclomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J28-Sf-JFt">
-                                <rect key="frame" x="171" y="318.5" width="32" height="30"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="Ldp-YH-622" kind="show" id="jCf-ZO-ZbX"/>
-                                </connections>
-                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CJ-Pk-5Oe" customClass="GIDSignInButton">
+                                <rect key="frame" x="0.0" y="84" width="375" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="WsW-aR-Nj0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k4K-wa-YL5"/>
-                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeV-iY-XRX"/>
+                            <constraint firstItem="6CJ-Pk-5Oe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lyg-AH-HqX"/>
+                            <constraint firstItem="6CJ-Pk-5Oe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="XeX-9F-l3e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6CJ-Pk-5Oe" secondAttribute="trailing" id="wId-HD-jTJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -45,7 +46,7 @@
         <!--Map-->
         <scene sceneID="2Ro-Dq-E8p">
             <objects>
-                <viewController id="Ldp-YH-622" userLabel="Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="Ldp-YH-622" userLabel="Map" customClass="MapViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M3U-ag-wsu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +77,4 @@
             <point key="canvasLocation" x="-188" y="118"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Y4z-L2-bhN"/>
-    </inferredMetricsTieBreakers>
 </document>
