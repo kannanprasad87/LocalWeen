@@ -89,7 +89,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        performSegue(withIdentifier: "locationDetailSegue", sender: self)
+        performSegue(withIdentifier: "toDetial", sender: self)
         return false
     }
     
