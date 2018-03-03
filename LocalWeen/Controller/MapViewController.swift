@@ -24,12 +24,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getLocations()
-        self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startMonitoringSignificantLocationChanges()
+        self.locationManager.delegate = self
         self.mapView.delegate = self
+        self.getLocations()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -89,7 +89,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        performSegue(withIdentifier: "toDetial", sender: self)
+        performSegue(withIdentifier: "toDetail", sender: self)
         return false
     }
     
