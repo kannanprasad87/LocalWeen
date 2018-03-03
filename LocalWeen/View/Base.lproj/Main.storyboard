@@ -214,6 +214,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
                     </view>
+                    <connections>
+                        <outlet property="addButton" destination="oom-aF-AaX" id="4bV-r2-n1J"/>
+                        <outlet property="addressLabel" destination="mfB-lw-nuM" id="1xM-db-CqK"/>
+                        <outlet property="cosmosView" destination="jvZ-xY-PMR" id="to1-PO-IcP"/>
+                        <outlet property="userChosenPhotoFromGalleryOrCamera" destination="hcX-cw-dNL" id="hYw-Ow-4sY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAC-Ao-Tbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

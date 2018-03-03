@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BA9703D3C93AAADC438F805 /* Pods_LocalWeen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52BD55132D16716DBB1917A /* Pods_LocalWeen.framework */; };
+		CE23C559204B4B32004E090A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C558204B4B32004E090A /* Database.swift */; };
 		CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17DFE204A194E0075351E /* AppDelegate.swift */; };
 		CEC17E04204A194F0075351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E02204A194F0075351E /* Main.storyboard */; };
 		CEC17E06204A194F0075351E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E05204A194F0075351E /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		C52BD55132D16716DBB1917A /* Pods_LocalWeen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalWeen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD3F74A393E63CB568FC000F /* Pods-LocalWeen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.debug.xcconfig"; sourceTree = "<group>"; };
+		CE23C558204B4B32004E090A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		CEC17DFB204A194E0075351E /* LocalWeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC17DFE204A194E0075351E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC17E03204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		CEC17E12204A246B0075351E /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CE23C558204B4B32004E090A /* Database.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
 				CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */,
+				CE23C559204B4B32004E090A /* Database.swift in Sources */,
 				CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
