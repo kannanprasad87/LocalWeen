@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("An error occured during Google Authentication")
             return
         }
+        //MARK: HERE WE CAN GRAB USER'S SOCIAL INFO
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
