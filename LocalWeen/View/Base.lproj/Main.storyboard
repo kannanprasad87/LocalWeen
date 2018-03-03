@@ -18,19 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCC-6s-udt">
-                                <rect key="frame" x="179" y="299" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Ldp-YH-622" kind="show" id="1hv-aF-Unx"/>
-                                </connections>
-                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zA5-KR-WMv" customClass="GIDSignInButton">
+                                <rect key="frame" x="0.0" y="84" width="375" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UGA-fZ-mZ7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zA5-KR-WMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A9o-8g-fOy"/>
+                            <constraint firstItem="zA5-KR-WMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="dCG-kh-804"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zA5-KR-WMv" secondAttribute="trailing" id="tNw-46-1dm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="HRd-Ps-JpR"/>
+                    <connections>
+                        <segue destination="Ldp-YH-622" kind="show" identifier="toMap" id="BW0-er-F2Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
