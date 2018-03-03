@@ -62,8 +62,11 @@
                                     <constraint firstAttribute="height" constant="30" id="EY1-O3-bj4"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZX-Gr-f0a">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZX-Gr-f0a" userLabel="LocDetail">
                                 <rect key="frame" x="176" y="637" width="22" height="30"/>
+                                <connections>
+                                    <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetail" id="pa3-eP-Ysk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -83,7 +86,6 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Rrp-kk-jgr" id="qie-Ra-OfJ"/>
-                        <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetal" id="56D-aU-cnG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
