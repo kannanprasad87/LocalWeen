@@ -15,6 +15,7 @@
 		CEC17E11204A19880075351E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E10204A19880075351E /* GoogleService-Info.plist */; };
 		CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E16204A27240075351E /* WelcomeViewController.swift */; };
 		CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E1A204A30A30075351E /* MapViewController.swift */; };
+		CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		CEC17E10204A19880075351E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEC17E16204A27240075351E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		CEC17E1A204A30A30075351E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetialViewController.swift; sourceTree = "<group>"; };
 		E2D54351178AF22D43741005 /* Pods-LocalWeen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				CEC17E16204A27240075351E /* WelcomeViewController.swift */,
 				CEC17DFE204A194E0075351E /* AppDelegate.swift */,
 				CEC17E1A204A30A30075351E /* MapViewController.swift */,
+				CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
 				CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */,
 				CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */,
