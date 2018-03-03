@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Welcome View Controller-->
+        <!--Welcome-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Welcome" customClass="WelcomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,7 +97,97 @@
                     <view key="view" contentMode="scaleToFill" id="8Xg-NG-fXF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfB-lw-nuM" userLabel="Address">
+                                <rect key="frame" x="0.0" y="64" width="375" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="fbK-Jp-sRL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvZ-xY-PMR" userLabel="Rating" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="128" y="86" width="120" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="pjr-t3-Qxs"/>
+                                    <constraint firstAttribute="height" constant="20" id="si7-AE-VP5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                        <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="filledBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oom-aF-AaX" userLabel="Add">
+                                <rect key="frame" x="173" y="111" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Ddf-OV-Umg"/>
+                                    <constraint firstAttribute="height" constant="30" id="MZt-M3-7vL"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lal-6F-jCF" userLabel="Gallery">
+                                <rect key="frame" x="83" y="111" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FTB-n7-FLw"/>
+                                    <constraint firstAttribute="width" constant="30" id="U80-cV-vQh"/>
+                                </constraints>
+                                <state key="normal" image="picture_add"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lur-L5-KaX" userLabel="Camera">
+                                <rect key="frame" x="293" y="111" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SQU-0v-tmN"/>
+                                    <constraint firstAttribute="width" constant="30" id="fzb-8n-eiY"/>
+                                </constraints>
+                                <state key="normal" image="camera"/>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hcX-cw-dNL">
+                                <rect key="frame" x="0.0" y="161" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Fg0-I9-ggk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lal-6F-jCF" firstAttribute="centerY" secondItem="oom-aF-AaX" secondAttribute="centerY" id="0jD-2q-ccU"/>
+                            <constraint firstItem="Lur-L5-KaX" firstAttribute="leading" secondItem="oom-aF-AaX" secondAttribute="trailing" constant="90" id="3GC-b9-IXv"/>
+                            <constraint firstItem="hcX-cw-dNL" firstAttribute="top" secondItem="oom-aF-AaX" secondAttribute="bottom" constant="20" id="7qJ-UD-HEB"/>
+                            <constraint firstItem="mfB-lw-nuM" firstAttribute="top" secondItem="trj-j0-NGq" secondAttribute="top" id="GMa-Wx-fc6"/>
+                            <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="IBo-o0-jMY"/>
+                            <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="Nk4-AX-PYg"/>
+                            <constraint firstItem="mfB-lw-nuM" firstAttribute="leading" secondItem="8Xg-NG-fXF" secondAttribute="leading" id="NpR-ml-RIm"/>
+                            <constraint firstItem="Lal-6F-jCF" firstAttribute="leading" secondItem="oom-aF-AaX" secondAttribute="leading" constant="-90" id="SVm-eO-z7o"/>
+                            <constraint firstItem="oom-aF-AaX" firstAttribute="top" secondItem="jvZ-xY-PMR" secondAttribute="bottom" constant="5" id="U1L-A3-hUd"/>
+                            <constraint firstItem="mfB-lw-nuM" firstAttribute="trailing" secondItem="8Xg-NG-fXF" secondAttribute="trailing" id="UAe-Mf-RjQ"/>
+                            <constraint firstItem="hcX-cw-dNL" firstAttribute="trailing" secondItem="trj-j0-NGq" secondAttribute="trailing" id="a7a-Qb-8hR"/>
+                            <constraint firstItem="Lur-L5-KaX" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="trailing" constant="-36" id="kXx-Su-A0L"/>
+                            <constraint firstItem="hcX-cw-dNL" firstAttribute="leading" secondItem="trj-j0-NGq" secondAttribute="leading" id="l23-n1-MPE"/>
+                            <constraint firstItem="Lur-L5-KaX" firstAttribute="top" secondItem="Lal-6F-jCF" secondAttribute="top" id="oRL-uE-dIA"/>
+                            <constraint firstItem="oom-aF-AaX" firstAttribute="centerX" secondItem="jvZ-xY-PMR" secondAttribute="centerX" id="qst-iM-as3"/>
+                            <constraint firstItem="jvZ-xY-PMR" firstAttribute="top" secondItem="mfB-lw-nuM" secondAttribute="bottom" constant="2" id="tTH-2Y-05R"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
                     </view>
                 </viewController>
@@ -124,4 +214,8 @@
             <point key="canvasLocation" x="-188" y="118"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="40" height="40"/>
+        <image name="picture_add" width="40" height="40"/>
+    </resources>
 </document>
