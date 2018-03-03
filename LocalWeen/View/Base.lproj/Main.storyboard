@@ -17,14 +17,45 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J28-Sf-JFt">
+                                <rect key="frame" x="171" y="318.5" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <segue destination="Ldp-YH-622" kind="show" id="jCf-ZO-ZbX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k4K-wa-YL5"/>
+                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeV-iY-XRX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="HRd-Ps-JpR"/>
+                    <connections>
+                        <segue destination="Ldp-YH-622" kind="show" identifier="toMap" id="Y4z-L2-bhN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="456.80000000000001" y="118.29085457271366"/>
+            <point key="canvasLocation" x="439" y="117"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="2Ro-Dq-E8p">
+            <objects>
+                <viewController id="Ldp-YH-622" userLabel="Map" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M3U-ag-wsu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="7Ll-BQ-ez5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="116"/>
         </scene>
         <!--Main Nav-->
         <scene sceneID="h1J-j5-2CQ">
@@ -45,4 +76,7 @@
             <point key="canvasLocation" x="-188" y="118"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Y4z-L2-bhN"/>
+    </inferredMetricsTieBreakers>
 </document>
