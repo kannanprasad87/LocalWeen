@@ -65,7 +65,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZX-Gr-f0a" userLabel="LocDetail">
                                 <rect key="frame" x="176" y="637" width="22" height="30"/>
                                 <connections>
-                                    <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetail" id="ig2-ya-4TW"/>
+                                    <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetail" id="X3e-4a-wME"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -226,6 +226,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
                     </view>
+                    <navigationItem key="navigationItem" id="k4t-7c-3gc"/>
                     <connections>
                         <outlet property="addButton" destination="oom-aF-AaX" id="4bV-r2-n1J"/>
                         <outlet property="addressLabel" destination="mfB-lw-nuM" id="1xM-db-CqK"/>
@@ -235,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAC-Ao-Tbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729" y="116"/>
+            <point key="canvasLocation" x="1790" y="116"/>
         </scene>
         <!--Main Nav-->
         <scene sceneID="h1J-j5-2CQ">
