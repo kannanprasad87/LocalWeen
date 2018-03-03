@@ -51,7 +51,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-kk-jgr" userLabel="Map">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-kk-jgr" userLabel="Map" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="573"/>
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -81,10 +81,29 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Ll-BQ-ez5"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Rrp-kk-jgr" id="qie-Ra-OfJ"/>
+                        <segue destination="NPJ-QS-Arv" kind="show" id="56D-aU-cnG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="116"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="WCs-Gh-1bg">
+            <objects>
+                <viewController id="NPJ-QS-Arv" userLabel="Detail" customClass="LocationDetialViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Xg-NG-fXF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rAC-Ao-Tbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="116"/>
         </scene>
         <!--Main Nav-->
         <scene sceneID="h1J-j5-2CQ">
