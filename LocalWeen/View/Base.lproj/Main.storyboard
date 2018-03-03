@@ -10,46 +10,75 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weclome View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeclomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J28-Sf-JFt">
-                                <rect key="frame" x="171" y="318.5" width="32" height="30"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="Ldp-YH-622" kind="show" id="jCf-ZO-ZbX"/>
-                                </connections>
-                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zA5-KR-WMv" customClass="GIDSignInButton">
+                                <rect key="frame" x="0.0" y="84" width="375" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UGA-fZ-mZ7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k4K-wa-YL5"/>
-                            <constraint firstItem="J28-Sf-JFt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeV-iY-XRX"/>
+                            <constraint firstItem="zA5-KR-WMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A9o-8g-fOy"/>
+                            <constraint firstItem="zA5-KR-WMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="dCG-kh-804"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zA5-KR-WMv" secondAttribute="trailing" id="tNw-46-1dm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="HRd-Ps-JpR"/>
                     <connections>
-                        <segue destination="Ldp-YH-622" kind="show" identifier="toMap" id="Y4z-L2-bhN"/>
+                        <segue destination="Ldp-YH-622" kind="show" identifier="toMap" id="BW0-er-F2Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="439" y="117"/>
+            <point key="canvasLocation" x="437.60000000000002" y="116.49175412293854"/>
         </scene>
         <!--Map-->
         <scene sceneID="2Ro-Dq-E8p">
             <objects>
-                <viewController id="Ldp-YH-622" userLabel="Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="Ldp-YH-622" userLabel="Map" customClass="MapViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M3U-ag-wsu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-kk-jgr" userLabel="Map">
+                                <rect key="frame" x="0.0" y="64" width="375" height="573"/>
+                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrf-3v-3A8" userLabel="Menu">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EY1-O3-bj4"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZX-Gr-f0a">
+                                <rect key="frame" x="176" y="637" width="22" height="30"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rrp-kk-jgr" firstAttribute="trailing" secondItem="7Ll-BQ-ez5" secondAttribute="trailing" id="2TV-G4-eIj"/>
+                            <constraint firstItem="9ZX-Gr-f0a" firstAttribute="centerX" secondItem="wrf-3v-3A8" secondAttribute="centerX" id="3kE-Qg-Apk"/>
+                            <constraint firstItem="9ZX-Gr-f0a" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="8EG-jN-MX9"/>
+                            <constraint firstItem="wrf-3v-3A8" firstAttribute="bottom" secondItem="7Ll-BQ-ez5" secondAttribute="bottom" id="Fak-go-Kqn"/>
+                            <constraint firstItem="Rrp-kk-jgr" firstAttribute="top" secondItem="7Ll-BQ-ez5" secondAttribute="top" id="HW8-up-Y2u"/>
+                            <constraint firstItem="wrf-3v-3A8" firstAttribute="top" secondItem="Rrp-kk-jgr" secondAttribute="bottom" id="IJX-yh-1aF"/>
+                            <constraint firstItem="wrf-3v-3A8" firstAttribute="leading" secondItem="7Ll-BQ-ez5" secondAttribute="leading" id="WoA-J7-DWC"/>
+                            <constraint firstItem="Rrp-kk-jgr" firstAttribute="leading" secondItem="7Ll-BQ-ez5" secondAttribute="leading" id="a8d-wR-m7l"/>
+                            <constraint firstItem="wrf-3v-3A8" firstAttribute="trailing" secondItem="7Ll-BQ-ez5" secondAttribute="trailing" id="anw-9i-boy"/>
+                            <constraint firstItem="9ZX-Gr-f0a" firstAttribute="centerY" secondItem="wrf-3v-3A8" secondAttribute="centerY" id="o1Z-dv-XUs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7Ll-BQ-ez5"/>
                     </view>
                 </viewController>
@@ -76,7 +105,4 @@
             <point key="canvasLocation" x="-188" y="118"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Y4z-L2-bhN"/>
-    </inferredMetricsTieBreakers>
 </document>

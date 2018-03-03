@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		3BA9703D3C93AAADC438F805 /* Pods_LocalWeen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52BD55132D16716DBB1917A /* Pods_LocalWeen.framework */; };
 		CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17DFE204A194E0075351E /* AppDelegate.swift */; };
-		CEC17E01204A194F0075351E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E00204A194F0075351E /* ViewController.swift */; };
 		CEC17E04204A194F0075351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E02204A194F0075351E /* Main.storyboard */; };
 		CEC17E06204A194F0075351E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E05204A194F0075351E /* Assets.xcassets */; };
 		CEC17E09204A194F0075351E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E07204A194F0075351E /* LaunchScreen.storyboard */; };
 		CEC17E11204A19880075351E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E10204A19880075351E /* GoogleService-Info.plist */; };
-		CEC17E17204A27240075351E /* WeclomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E16204A27240075351E /* WeclomeViewController.swift */; };
+		CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E16204A27240075351E /* WelcomeViewController.swift */; };
+		CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E1A204A30A30075351E /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,13 +22,13 @@
 		CD3F74A393E63CB568FC000F /* Pods-LocalWeen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.debug.xcconfig"; sourceTree = "<group>"; };
 		CEC17DFB204A194E0075351E /* LocalWeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC17DFE204A194E0075351E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEC17E00204A194F0075351E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEC17E03204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEC17E05204A194F0075351E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC17E08204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC17E0A204A194F0075351E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC17E10204A19880075351E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CEC17E16204A27240075351E /* WeclomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeclomeViewController.swift; sourceTree = "<group>"; };
+		CEC17E16204A27240075351E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		CEC17E1A204A30A30075351E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E2D54351178AF22D43741005 /* Pods-LocalWeen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,9 +102,9 @@
 		CEC17E13204A24710075351E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CEC17E16204A27240075351E /* WeclomeViewController.swift */,
+				CEC17E16204A27240075351E /* WelcomeViewController.swift */,
 				CEC17DFE204A194E0075351E /* AppDelegate.swift */,
-				CEC17E00204A194F0075351E /* ViewController.swift */,
+				CEC17E1A204A30A30075351E /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,9 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC17E01204A194F0075351E /* ViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
-				CEC17E17204A27240075351E /* WeclomeViewController.swift in Sources */,
+				CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */,
+				CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
