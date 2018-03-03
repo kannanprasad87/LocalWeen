@@ -14,6 +14,7 @@
 		CEC17E06204A194F0075351E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E05204A194F0075351E /* Assets.xcassets */; };
 		CEC17E09204A194F0075351E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E07204A194F0075351E /* LaunchScreen.storyboard */; };
 		CEC17E11204A19880075351E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E10204A19880075351E /* GoogleService-Info.plist */; };
+		CEC17E17204A27240075351E /* WeclomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E16204A27240075351E /* WeclomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		CEC17E08204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC17E0A204A194F0075351E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC17E10204A19880075351E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEC17E16204A27240075351E /* WeclomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeclomeViewController.swift; sourceTree = "<group>"; };
 		E2D54351178AF22D43741005 /* Pods-LocalWeen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,15 +82,48 @@
 		CEC17DFD204A194E0075351E /* LocalWeen */ = {
 			isa = PBXGroup;
 			children = (
-				CEC17DFE204A194E0075351E /* AppDelegate.swift */,
-				CEC17E00204A194F0075351E /* ViewController.swift */,
-				CEC17E02204A194F0075351E /* Main.storyboard */,
-				CEC17E05204A194F0075351E /* Assets.xcassets */,
-				CEC17E07204A194F0075351E /* LaunchScreen.storyboard */,
+				CEC17E15204A24830075351E /* Model */,
+				CEC17E14204A247D0075351E /* View */,
+				CEC17E13204A24710075351E /* Controller */,
+				CEC17E12204A246B0075351E /* Service */,
 				CEC17E0A204A194F0075351E /* Info.plist */,
 				CEC17E10204A19880075351E /* GoogleService-Info.plist */,
 			);
 			path = LocalWeen;
+			sourceTree = "<group>";
+		};
+		CEC17E12204A246B0075351E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CEC17E13204A24710075351E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CEC17E16204A27240075351E /* WeclomeViewController.swift */,
+				CEC17DFE204A194E0075351E /* AppDelegate.swift */,
+				CEC17E00204A194F0075351E /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CEC17E14204A247D0075351E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEC17E02204A194F0075351E /* Main.storyboard */,
+				CEC17E05204A194F0075351E /* Assets.xcassets */,
+				CEC17E07204A194F0075351E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEC17E15204A24830075351E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +224,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -206,12 +242,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +272,7 @@
 			files = (
 				CEC17E01204A194F0075351E /* ViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
+				CEC17E17204A27240075351E /* WeclomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
