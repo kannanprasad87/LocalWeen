@@ -65,7 +65,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZX-Gr-f0a" userLabel="LocDetail">
                                 <rect key="frame" x="176" y="637" width="22" height="30"/>
                                 <connections>
-                                    <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetail" id="pa3-eP-Ysk"/>
+                                    <segue destination="NPJ-QS-Arv" kind="show" identifier="toDetail" id="X3e-4a-wME"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -139,6 +139,9 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oom-aF-AaX" userLabel="Add">
@@ -147,6 +150,9 @@
                                     <constraint firstAttribute="width" constant="30" id="Ddf-OV-Umg"/>
                                     <constraint firstAttribute="height" constant="30" id="MZt-M3-7vL"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addButton:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="KlZ-Nc-g8t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lal-6F-jCF" userLabel="Gallery">
                                 <rect key="frame" x="83" y="111" width="30" height="30"/>
@@ -155,6 +161,9 @@
                                     <constraint firstAttribute="width" constant="30" id="U80-cV-vQh"/>
                                 </constraints>
                                 <state key="normal" image="picture_add"/>
+                                <connections>
+                                    <action selector="addPhoto:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="1Rf-cq-OOv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lur-L5-KaX" userLabel="Camera">
                                 <rect key="frame" x="293" y="111" width="30" height="30"/>
@@ -163,6 +172,9 @@
                                     <constraint firstAttribute="width" constant="30" id="fzb-8n-eiY"/>
                                 </constraints>
                                 <state key="normal" image="camera"/>
+                                <connections>
+                                    <action selector="addPhotoFromCamera:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="IFk-G3-Bn4"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hcX-cw-dNL" userLabel="ChosenImg">
                                 <rect key="frame" x="0.0" y="161" width="375" height="200"/>
@@ -214,10 +226,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
                     </view>
+                    <navigationItem key="navigationItem" id="k4t-7c-3gc"/>
+                    <connections>
+                        <outlet property="addButton" destination="oom-aF-AaX" id="4bV-r2-n1J"/>
+                        <outlet property="addressLabel" destination="mfB-lw-nuM" id="1xM-db-CqK"/>
+                        <outlet property="cosmosView" destination="jvZ-xY-PMR" id="to1-PO-IcP"/>
+                        <outlet property="userChosenPhotoFromGalleryOrCamera" destination="hcX-cw-dNL" id="hYw-Ow-4sY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAC-Ao-Tbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729" y="116"/>
+            <point key="canvasLocation" x="1790" y="116"/>
         </scene>
         <!--Main Nav-->
         <scene sceneID="h1J-j5-2CQ">
