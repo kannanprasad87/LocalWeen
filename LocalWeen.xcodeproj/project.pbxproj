@@ -88,7 +88,6 @@
 		CEC17DFD204A194E0075351E /* LocalWeen */ = {
 			isa = PBXGroup;
 			children = (
-				CEC17E15204A24830075351E /* Model */,
 				CEC17E14204A247D0075351E /* View */,
 				CEC17E13204A24710075351E /* Controller */,
 				CEC17E12204A246B0075351E /* Service */,
@@ -126,13 +125,6 @@
 				CEC17E07204A194F0075351E /* LaunchScreen.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		CEC17E15204A24830075351E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

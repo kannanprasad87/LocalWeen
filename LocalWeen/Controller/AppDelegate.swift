@@ -11,6 +11,13 @@ import GoogleMaps
 import Firebase
 import GoogleSignIn
 
+class socialProfile{
+    var usrGivenName = ""
+    var usrEmail = ""
+    var usrProfilePhoto = UIImage()
+}
+
+let social = socialProfile()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -43,6 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         //MARK: HERE WE CAN GRAB USER'S SOCIAL INFO
+        
+        social.usrEmail = user.profile.email
+        social.usrGivenName = user.profile.givenName
+        if user.profile.hasImage {
+            //MARK: FIGURE OUT HOW TO GET URL TO IMAGE, can't find the code that works
+        }
+        
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
