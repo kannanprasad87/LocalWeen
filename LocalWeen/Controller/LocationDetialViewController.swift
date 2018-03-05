@@ -27,6 +27,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var userChosenPhotoFromGalleryOrCamera: UIImageView!
     @IBOutlet weak var usrProfilePhoto: UIImageView!
     @IBOutlet weak var usrGivenName: UILabel!
+    @IBOutlet weak var averageRatingLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -129,12 +130,23 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             for photo in photoNames {
                 //grab photo and stick it in the UI
                 
+            }//for
+        }//getMatching
+    }//getLocationPhotos
+    
+    func averageRating(coordinate:CLLocationCoordinate2D){
+        var totalRating:Double = 0
+        dbHandler.getRatings(coordinate: coordinate) { (ratings) in
+            for rating in ratings {
+                
+                totalRating += rating as Double
+                print("DEBUG rating = \(rating)")
             }
+            print("DEBUG totalratings = \(totalRating) ")
+            let averageRating:Double = (Double(totalRating))/(Double(ratings.count))
+            let avRatingStr = String(format: "%.2f", ceil(averageRating*100)/100)
+            self.averageRatingLabel.text = avRatingStr
         }
-        
-        
-        
-        
     }
     
 }//LocationDetailViewController
