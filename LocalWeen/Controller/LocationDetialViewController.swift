@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import Cosmos
-import GoogleSignIn
+import CoreLocation
 
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {

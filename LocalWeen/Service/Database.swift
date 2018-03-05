@@ -7,7 +7,7 @@
 //
 
 import FirebaseDatabase
-import GoogleMaps
+import CoreLocation
 
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
