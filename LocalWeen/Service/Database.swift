@@ -46,15 +46,22 @@ class DBHandler{
         }//ref
     }//getMatching
     
-    func getRatings(coordinate: CLLocationCoordinate2D, completionHandler: @escaping ([Double]) -> ()) {
+    func getRatings(coordinate:CLLocationCoordinate2D, completionHandler: @escaping ([Double]) -> ()) {
         ref.observeSingleEvent(of: .value) { (snapshot) in
-            guard let snaps = snapshot.children.allObjects as? [DataSnapshot] else {
-                return completionHandler([])
-            }
-            let ratings = snaps.flatMap { ($0.value as? [String:Double])?["rating"] }
+            var ratings = [Double]()
+            if let snapshot =  snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshot {
+                    if let data = snap.value as? [String:Any]{
+                        let rating = data["rating"]
+                        if rating != nil{
+                            ratings.append(rating! as! Double)
+                        }//if
+                    }//if
+                }//for
+            }//if
             completionHandler(ratings)
-        }
+        }//ref
     }
-    
+
 }
 

@@ -204,7 +204,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="DoV-2q-93H"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -236,7 +236,7 @@
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="trailing" id="qgK-Oo-Lnv"/>
                             <constraint firstItem="oom-aF-AaX" firstAttribute="centerX" secondItem="jvZ-xY-PMR" secondAttribute="centerX" id="qst-iM-as3"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="top" secondItem="mfB-lw-nuM" secondAttribute="bottom" constant="2" id="tTH-2Y-05R"/>
-                            <constraint firstItem="iog-ju-XXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="leading" constant="20" symbolic="YES" id="vyt-gU-Ham"/>
+                            <constraint firstItem="iog-ju-XXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="leading" constant="5" id="vyt-gU-Ham"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
                     </view>
@@ -244,7 +244,7 @@
                     <connections>
                         <outlet property="addButton" destination="oom-aF-AaX" id="4bV-r2-n1J"/>
                         <outlet property="addressLabel" destination="mfB-lw-nuM" id="1xM-db-CqK"/>
-                        <outlet property="averageRating" destination="iog-ju-XXv" id="2Xj-OL-Fqc"/>
+                        <outlet property="averageRatingLabel" destination="iog-ju-XXv" id="NqQ-1O-bXi"/>
                         <outlet property="cosmosView" destination="jvZ-xY-PMR" id="to1-PO-IcP"/>
                         <outlet property="userChosenPhotoFromGalleryOrCamera" destination="hcX-cw-dNL" id="hYw-Ow-4sY"/>
                         <outlet property="usrGivenName" destination="Hu0-mV-P3h" id="ONN-M4-kaN"/>

@@ -48,6 +48,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         userChosenPhotoFromGalleryOrCamera.isHidden = true
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
+        averageRating(coordinate: coordinate)
     }
     
     private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
@@ -140,12 +141,13 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             for rating in ratings {
                 
                 totalRating += rating as Double
-                print("DEBUG rating = \(rating)")
+                
             }
-            print("DEBUG totalratings = \(totalRating) ")
-            let averageRating:Double = (Double(totalRating))/(Double(ratings.count))
-            let avRatingStr = String(format: "%.2f", ceil(averageRating*100)/100)
-            self.averageRatingLabel.text = avRatingStr
+            var av:Double = 0
+            av = (Double(totalRating))/(Double(ratings.count))
+            let avRatingStr = String(format: "%.2f", ceil(av * 100)/100)
+            self.averageRatingLabel.text = "Average: " + avRatingStr
+
         }
     }
     
