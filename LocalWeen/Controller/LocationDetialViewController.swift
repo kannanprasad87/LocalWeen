@@ -25,6 +25,8 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var userChosenPhotoFromGalleryOrCamera: UIImageView!
+    @IBOutlet weak var usrProfilePhoto: UIImageView!
+    @IBOutlet weak var usrGivenName: UILabel!
     
     
     override func viewDidLoad() {
@@ -42,6 +44,8 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         cosmosView.didTouchCosmos = didTouchCosmos
         picker?.delegate = self
         userChosenPhotoFromGalleryOrCamera.isHidden = true
+        usrGivenName.text = social.usrGivenName
+        usrProfilePhoto.image = social.usrProfilePhoto
     }
     
     private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {

@@ -55,7 +55,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         social.usrGivenName = user.profile.givenName
         if user.profile.hasImage {
             //MARK: FIGURE OUT HOW TO GET URL TO IMAGE, can't find the code that works
-        }
+            guard let url = (user.profile.imageURL(withDimension: 120)) else {
+                print("No url found for user social profile.  user.profile.imageURL is not found")
+                return
+            }
+           
+            let session = URLSession.shared
+            session.dataTask(with: url) { (data, response, error) in
+                if let response = response {
+                    print(response)
+                }
+                if let error = error {
+                    print("Error getting data from URL: \(error)")
+                }
+                if let data = data {
+                    social.usrProfilePhoto  = UIImage(data: data)!
+                 }
+            }.resume() //session.dataTask
+        }//if user.profile.hasImage
         
         
         guard let authentication = user.authentication else { return }
