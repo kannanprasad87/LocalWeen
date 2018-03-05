@@ -37,6 +37,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             return
         }
         reverseGeocodeCoordinate(coordinate)
+        getLocationPhotos(coordinate: coordinate)
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
         }
@@ -74,6 +75,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         
     }
     
+    //MARK Cosmos Ratings
     private func didTouchCosmos(_ rating: Double){
         addButton.isEnabled = true
     }
@@ -82,6 +84,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         addButton.isEnabled = true
     }
     
+    //MARK: Choose Photo
     @IBAction func addPhoto(_ sender: Any) {
         openGallary()
     }
@@ -98,7 +101,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         present(picker!, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         userChosenPhotoFromGalleryOrCamera.image = chosenImage
         
@@ -119,5 +122,19 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             present(alert, animated: true, completion: nil)
         }
     }//openCamera
+    
+    //MARK: Get Location Photos
+    func getLocationPhotos(coordinate:CLLocationCoordinate2D){
+        dbHandler.getMatching(coordinate: coordinate) { (photoNames) in
+            for photo in photoNames {
+                //grab photo and stick it in the UI
+                
+            }
+        }
+        
+        
+        
+        
+    }
     
 }//LocationDetailViewController

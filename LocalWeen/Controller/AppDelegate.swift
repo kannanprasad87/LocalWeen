@@ -62,9 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
            
             let session = URLSession.shared
             session.dataTask(with: url) { (data, response, error) in
-                if let response = response {
-                    print(response)
-                }
                 if let error = error {
                     print("Error getting data from URL: \(error)")
                 }

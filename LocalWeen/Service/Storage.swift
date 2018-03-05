@@ -10,6 +10,7 @@ import Foundation
 
 import UIKit
 import FirebaseStorage
+import FirebaseStorageUI
 
 struct StorageHandler {
     
@@ -50,4 +51,11 @@ struct StorageHandler {
         uploadTask.resume()
         return filename
     }//upload
+    
+    func downLoad(filename: String) -> UIImageView{
+        let reference = imageReference.child(filename)
+        let imageView: UIImageView = UIImageView()
+        imageView.sd_setImage(with: reference)
+        return imageView
+    }
 }

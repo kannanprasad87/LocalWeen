@@ -70,7 +70,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                         self.placeMarker(latitude: lattitude as! Double, longitude: longitude as! Double, marker: self.locationOfInterestMarker, imageName: self.locationOfInterestImage)
                     }//end if
                     else{
-                        fatalError("Can't get a snapshot")
+                        fatalError("Can't get a Firebase snapshot")
                     }
                 }//end for
             }//end if
