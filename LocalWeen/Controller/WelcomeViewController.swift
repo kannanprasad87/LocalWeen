@@ -45,5 +45,7 @@ class WelcomeViewController: UIViewController, GIDSignInUIDelegate {
         performSegue(withIdentifier: "toMap", sender: self)
     }//goToMap
     
+    
+    
 }//WelcomeViewController
 
