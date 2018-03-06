@@ -223,7 +223,7 @@
                                 </constraints>
                                 <connections>
                                     <action selector="addButton:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="KlZ-Nc-g8t"/>
-                                    <segue destination="Ldp-YH-622" kind="show" id="V0K-la-yRS"/>
+                                    <segue destination="Ldp-YH-622" kind="show" identifier="toMap" id="V0K-la-yRS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lal-6F-jCF" userLabel="Gallery">
@@ -280,6 +280,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="leading" id="0GN-UW-oP0"/>
                             <constraint firstItem="Lal-6F-jCF" firstAttribute="centerY" secondItem="oom-aF-AaX" secondAttribute="centerY" id="0jD-2q-ccU"/>

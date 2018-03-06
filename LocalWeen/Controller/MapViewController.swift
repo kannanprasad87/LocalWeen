@@ -14,11 +14,13 @@ import GooglePlaces
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
+    //Map Support
     @IBOutlet weak var mapView: GMSMapView!
-    
     private var locationOfInterestMarker = GMSMarker()
     private var userMarker = GMSMarker()
     var locationManager = CLLocationManager()
+    
+    //Constants
     private let zoom:Float = 15
     let locationOfInterestImage:String = "hhouseicon"
     let userMarkerImage:String = "witchicon"
@@ -27,11 +29,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    
+    var isSearchResult:Bool = Bool()
+    var searchCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Search Bar
+        isSearchResult = false
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
         
@@ -79,11 +83,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if let destination = segue.destination as? LocationDetialViewController {
+        
+        if isSearchResult {
+            //User searched for a location so maybe they want to add it
+                if let destination = segue.destination as? LocationDetialViewController {
+
+                    destination.coordinate = searchCoordinates
+                } else {
+                    return
+                }
             
-            destination.coordinate = locationManager.location?.coordinate
         } else {
-            return
+                //User's current location
+                if let destination = segue.destination as? LocationDetialViewController {
+              
+                    destination.coordinate = locationManager.location?.coordinate
+                } else {
+                    return
+                }
         }
     }
     
@@ -129,14 +146,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
 }//MapViewController
 
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
+    
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
-        print("Place name: \(place.name)")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.attributions))")
+        isSearchResult = true
+        searchCoordinates = place.coordinate
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

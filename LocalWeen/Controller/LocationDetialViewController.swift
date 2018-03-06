@@ -12,7 +12,7 @@ import Cosmos
 import CoreLocation
 
 
-class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     public var coordinate:CLLocationCoordinate2D? = CLLocationCoordinate2D()
     private let dbHandler = DBHandler()
@@ -33,12 +33,8 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         cosmosView.rating = 0
-        guard let coordinate = locationManager.location?.coordinate else {
-            print("Can't get user location")
-            return
-        }
-        reverseGeocodeCoordinate(coordinate)
-        getLocationPhotos(coordinate: coordinate)
+        reverseGeocodeCoordinate(coordinate!)
+        getLocationPhotos(coordinate: coordinate!)
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
         }
@@ -48,7 +44,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         userChosenPhotoFromGalleryOrCamera.isHidden = true
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
-        averageRating(coordinate: coordinate)
+        averageRating(coordinate: coordinate!)
     }
     
     private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
@@ -150,5 +146,11 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
 
         }
     }
+    
+    @IBAction func Back(_ sender: UIButton) {
+        performSegue(withIdentifier: "toMap", sender: self)
+        
+    }
+    
     
 }//LocationDetailViewController
