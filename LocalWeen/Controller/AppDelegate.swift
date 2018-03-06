@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Google Sign In
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error) != nil {
-            print("An error occured during Google Authentication")
+            print("Either the user already signed out or an error occured during Google Authentication")
             return
         }
         //MARK: HERE WE CAN GRAB USER'S SOCIAL INFO

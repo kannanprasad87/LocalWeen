@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import FirebaseDatabase
+import GoogleSignIn
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -85,6 +86,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         myMarker.icon = UIImage(named: imageName)
         myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
         
+    }
+
+    
+    @IBAction func didTapSignOut(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signOut()
     }
     
     

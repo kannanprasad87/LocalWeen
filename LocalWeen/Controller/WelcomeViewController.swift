@@ -9,8 +9,8 @@
 import UIKit
 import GoogleSignIn
 import Firebase
-import GoogleSignIn
-import Firebase
+
+
 class WelcomeViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
