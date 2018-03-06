@@ -128,9 +128,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-oD-Ah8" userLabel="Search">
                                         <rect key="frame" x="5" y="0.0" width="48" height="30"/>
                                         <state key="normal" title="Search"/>
-                                        <connections>
-                                            <segue destination="Ve7-aF-sCv" kind="show" id="mGq-hZ-DBI"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,22 +162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="116"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="nva-XG-ajJ">
-            <objects>
-                <viewController id="PZo-7Y-i6u" userLabel="Search" customClass="SearchViewController" customModule="LocalWeen" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WoF-Ac-eRe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Grb-T6-2BL"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Wx7-Sq-Gtb"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ql6-AJ-ygA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1239.2" y="1047.5262368815593"/>
         </scene>
         <!--Detail-->
         <scene sceneID="WCs-Gh-1bg">
@@ -361,24 +342,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVc-Ex-J9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-201" y="116"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="i1B-lh-bOV">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ve7-aF-sCv" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DBB-fD-9JF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="PZo-7Y-i6u" kind="relationship" relationship="rootViewController" id="9kd-tf-mGp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AV9-KB-z84" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="593" y="1048"/>
         </scene>
     </scenes>
     <resources>

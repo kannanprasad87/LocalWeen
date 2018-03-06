@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import FirebaseDatabase
 import GoogleSignIn
+import GooglePlaces
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -22,14 +23,40 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     let locationOfInterestImage:String = "hhouseicon"
     let userMarkerImage:String = "witchicon"
     
+    //Search Bar Support
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Search Bar
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        let subView = UIView(frame: CGRect(x: 0, y: 65.0, width: 350.0, height: 45.0))
+        
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        definesPresentationContext = true
+        
+        //Location Manager and Map View Delegate
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startMonitoringSignificantLocationChanges()
         self.locationManager.delegate = self
         self.mapView.delegate = self
+        
+        //Get all stored locations and place marker
         self.getLocations()
     }
     
@@ -101,4 +128,29 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
 }//MapViewController
 
+extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        // Do something with the selected place.
+        print("Place name: \(place.name)")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
 
