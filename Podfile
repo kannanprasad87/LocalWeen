@@ -14,6 +14,8 @@ target 'LocalWeen' do
    pod 'Firebase/Auth'
    pod 'GoogleSignIn'
    pod 'FirebaseUI/Storage'
+   pod 'GooglePlaces'
+
    
    #Cosmos Pod
    pod 'Cosmos', '~> 15.0'
