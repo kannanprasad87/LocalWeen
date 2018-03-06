@@ -11,7 +11,6 @@
 		CE23C559204B4B32004E090A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C558204B4B32004E090A /* Database.swift */; };
 		CE23C55B204B5B0E004E090A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C55A204B5B0E004E090A /* Storage.swift */; };
 		CE567EA4204E178700C457BD /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE567EA3204E178600C457BD /* LegalViewController.swift */; };
-		CEA4A7B6204F1A240040D4C2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A7B5204F1A240040D4C2 /* SearchViewController.swift */; };
 		CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17DFE204A194E0075351E /* AppDelegate.swift */; };
 		CEC17E04204A194F0075351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E02204A194F0075351E /* Main.storyboard */; };
 		CEC17E06204A194F0075351E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E05204A194F0075351E /* Assets.xcassets */; };
@@ -28,7 +27,6 @@
 		CE23C558204B4B32004E090A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		CE23C55A204B5B0E004E090A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CE567EA3204E178600C457BD /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
-		CEA4A7B5204F1A240040D4C2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CEC17DFB204A194E0075351E /* LocalWeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC17DFE204A194E0075351E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC17E03204A194F0075351E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				CEC17E1A204A30A30075351E /* MapViewController.swift */,
 				CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */,
 				CE567EA3204E178600C457BD /* LegalViewController.swift */,
-				CEA4A7B5204F1A240040D4C2 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,7 +279,6 @@
 			files = (
 				CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
-				CEA4A7B6204F1A240040D4C2 /* SearchViewController.swift in Sources */,
 				CE567EA4204E178700C457BD /* LegalViewController.swift in Sources */,
 				CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */,
 				CE23C559204B4B32004E090A /* Database.swift in Sources */,

@@ -22,8 +22,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     //Constants
     private let zoom:Float = 15
-    let locationOfInterestImage:String = "hhouseicon"
-    let userMarkerImage:String = "witchicon"
+    let locationOfInterestImage = "hhouseicon"
+    let userMarkerImage = "witchicon"
+    let questionMarker = "questionMapMaker"
     
     //Search Bar Support
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -137,7 +138,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         GIDSignIn.sharedInstance().signOut()
     }
     
-    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         performSegue(withIdentifier: "toDetail", sender: self)
         return false
@@ -151,6 +151,7 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
+        placeMarker(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, marker: locationOfInterestMarker, imageName: questionMarker)
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
         isSearchResult = true
         searchCoordinates = place.coordinate
