@@ -35,7 +35,7 @@ class DBHandler{
                     if let data = snap.value as? [String:Any]{
                         let imageName = data["image_name"]
 
-                        images.append(imageName as! String)
+                        images.append(imageName! as! String)
                     }//if
                     else{
                         fatalError("Can't get a Firebase snapshot")
@@ -49,13 +49,23 @@ class DBHandler{
     func getRatings(coordinate:CLLocationCoordinate2D, completionHandler: @escaping ([Double]) -> ()) {
         ref.observeSingleEvent(of: .value) { (snapshot) in
             var ratings = [Double]()
+            print("in getRatings")
             if let snapshot =  snapshot.children.allObjects as? [DataSnapshot]{
+                print("in let snapshot")
                 for snap in snapshot {
+                    print("in snap")
                     if let data = snap.value as? [String:Any]{
-                        let rating = data["rating"]
-                        if rating != nil{
-                            ratings.append(rating! as! Double)
-                        }//if
+                        print("in let data")
+                        guard let ratingData = data["rating"] else {
+                            print("No rating found")
+                            return
+                        }
+                        let rating = ratingData as! Double
+                        if rating >= 1.0 {
+                            ratings.append(rating)
+                        } else {
+                            print("Rating was less than 1")
+                        }
                     }//if
                 }//for
             }//if

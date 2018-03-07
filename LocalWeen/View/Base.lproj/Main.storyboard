@@ -279,6 +279,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wp7-3a-4pD">
+                                <rect key="frame" x="170" y="318.5" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="Back:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="Cpj-LT-3O9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -289,11 +296,13 @@
                             <constraint firstItem="hcX-cw-dNL" firstAttribute="top" secondItem="oom-aF-AaX" secondAttribute="bottom" constant="20" id="7qJ-UD-HEB"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="centerX" secondItem="qIO-8f-P1o" secondAttribute="centerX" id="8N4-jF-bUU"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="bottom" secondItem="trj-j0-NGq" secondAttribute="bottom" constant="-5" id="8S5-JU-Yeo"/>
+                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerY" secondItem="8Xg-NG-fXF" secondAttribute="centerY" id="BIr-u8-JVZ"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="top" secondItem="trj-j0-NGq" secondAttribute="top" id="GMa-Wx-fc6"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="IBo-o0-jMY"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="Nk4-AX-PYg"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="leading" id="NpR-ml-RIm"/>
                             <constraint firstItem="trj-j0-NGq" firstAttribute="trailing" secondItem="iog-ju-XXv" secondAttribute="trailing" id="Pks-Ff-lNY"/>
+                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerX" secondItem="8Xg-NG-fXF" secondAttribute="centerX" id="QLt-dG-nMO"/>
                             <constraint firstItem="Lal-6F-jCF" firstAttribute="leading" secondItem="oom-aF-AaX" secondAttribute="leading" constant="-90" id="SVm-eO-z7o"/>
                             <constraint firstItem="oom-aF-AaX" firstAttribute="top" secondItem="jvZ-xY-PMR" secondAttribute="bottom" constant="5" id="U1L-A3-hUd"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="trailing" id="UAe-Mf-RjQ"/>
