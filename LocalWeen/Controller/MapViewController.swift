@@ -89,7 +89,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             //User searched for a location so maybe they want to add it
                 if let destination = segue.destination as? LocationDetialViewController {
 
-                    destination.coordinate = searchCoordinates
+                    destination.coord = searchCoordinates
                 } else {
                     return
                 }
@@ -98,7 +98,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                 //User's current location
                 if let destination = segue.destination as? LocationDetialViewController {
               
-                    destination.coordinate = locationManager.location?.coordinate
+                    destination.coord = locationManager.location?.coordinate
                 } else {
                     return
                 }
