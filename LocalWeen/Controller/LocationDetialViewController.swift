@@ -37,7 +37,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         getLocationPhotos(coordinate: coord!)
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
-        }
+        }//if
         cosmosView.didFinishTouchingCosmos = didFinishTouchingCosmos
         cosmosView.didTouchCosmos = didTouchCosmos
         picker?.delegate = self
@@ -45,7 +45,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
         averageRating(coordinate: coord!)
-    }
+    }//viewDidLoad
     
     private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
         let geocoder = GMSGeocoder()
@@ -61,7 +61,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func addButton(_ sender: UIButton) {
         guard let coordinate = self.coord else {
             fatalError("Can't get coordinate")
-        }
+        }//guard
         // store location rating and possibly image path if an image was chosen
         if userChosenPhotoFromGalleryOrCamera.image != nil {
             let imageName:String = storageHandler.upLoad(imageToUpload: userChosenPhotoFromGalleryOrCamera.image!)
@@ -69,35 +69,33 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         } else {
             //don't upload an image, just save the location rating and coord
             dbHandler.addLocation(coordinate: coordinate, rating: cosmosView.rating, imageName: "")
-        }
-        
-    }
+        }//else
+    }//addButton
     
     //MARK Cosmos Ratings
     private func didTouchCosmos(_ rating: Double){
         addButton.isEnabled = true
-    }
+    }//didTouchCosmos
     
     private func didFinishTouchingCosmos(_ rating: Double){
         addButton.isEnabled = true
-    }
+    }//didFinishTouchingCosmos
     
     //MARK: Choose Photo
     @IBAction func addPhoto(_ sender: Any) {
         openGallary()
-    }
+    }//addPhoto
     
     @IBAction func addPhotoFromCamera(_ sender: Any) {
         openCamera()
-    }
-    
+    }//addPhotoFromCamera
     
     private func openGallary()
     {
         picker!.allowsEditing = false
         picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
         present(picker!, animated: true, completion: nil)
-    }
+    }//openGallary
     
      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -105,7 +103,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         
         dismiss(animated: true, completion: nil)
         userChosenPhotoFromGalleryOrCamera.isHidden = false
-    }
+    }//imagePickerController
     
     private func openCamera() {
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
@@ -113,44 +111,40 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             picker!.sourceType = UIImagePickerControllerSourceType.camera
             picker!.cameraCaptureMode = .photo
             present(picker!, animated: true, completion: nil)
-        }else{
+        } else {
             let alert = UIAlertController(title: "Camera Not Found", message: "This device has no Camera", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        }
+        }//else
     }//openCamera
     
     //MARK: Get Location Photos
     func getLocationPhotos(coordinate:CLLocationCoordinate2D){
-        dbHandler.getMatching(coordinate: coordinate) { (photoNames) in
-            for photo in photoNames {
-                //grab photo and stick it in the UI
-                
+        dbHandler.getFor(coordinateIn: coordinate, what: "fileNames") { (fileNames) in
+            for file in fileNames{
+                //Display the photos
             }//for
-        }//getMatching
+        }//dbHandler
     }//getLocationPhotos
     
     func averageRating(coordinate:CLLocationCoordinate2D){
         var totalRating:Double = 0
-        dbHandler.getRatings(coordinate: coordinate) { (ratings) in
+        dbHandler.getFor(coordinateIn: coordinate, what: "ratings") { (ratings) in
             for rating in ratings {
-                
-                totalRating += rating as Double
-                
-            }
+                totalRating += rating as! Double
+            }//for ratings
+            
             var av:Double = 0
             av = (Double(totalRating))/(Double(ratings.count))
             let avRatingStr = String(format: "%.2f", ceil(av * 100)/100)
             self.averageRatingLabel.text = "Average: " + avRatingStr
-
-        }
-    }
+        }//dbHandler
+    }//averageRating
     
     @IBAction func Back(_ sender: UIButton) {
         performSegue(withIdentifier: "toMap", sender: self)
-        
-    }
+    }//Back
     
     
 }//LocationDetailViewController
