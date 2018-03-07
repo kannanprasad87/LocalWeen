@@ -34,10 +34,8 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         super.viewDidLoad()
         cosmosView.rating = 0
         reverseGeocodeCoordinate(coord!)
-        //
-        //
-        //
-        //getLocationPhotos(coordinate: coord!)
+        print("getLocationPhotos")
+        getLocationPhotos(coordinate: coord!)
         
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
@@ -49,6 +47,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
         averageRating(coordinate: coord!)
+        
     }//viewDidLoad
     
     private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
@@ -127,7 +126,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     func getLocationPhotos(coordinate:CLLocationCoordinate2D){
         dbHandler.getFor(coordinateIn: coordinate, what: "fileNames") { (fileNames) in
             for file in fileNames{
-                //Display the photos
+                print("\(String(describing: file))")
             }//for
         }//dbHandler
     }//getLocationPhotos

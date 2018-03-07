@@ -37,12 +37,11 @@ class DBHandler{
                         
                         let isMatch = self.matchCoords(coordinateIn: coordinateIn!, coordFromDB: coordFromDB)
                         
-                        print("in switch.  what = \(what)")
-                        
                         switch what {
                            
                             case "fileNames":
                                 guard let filename = data["image_name"] else {
+                                    print("Can't get filename")
                                     return
                                 }
                                 if isMatch {
@@ -52,6 +51,7 @@ class DBHandler{
                             case "ratings":
                             
                                 guard let ratingData = data["rating"] else {
+                                    print("Can't get rating")
                                     return
                                 }
                                 
@@ -86,8 +86,7 @@ class DBHandler{
     }//get
     
     private func matchCoords(coordinateIn:CLLocationCoordinate2D, coordFromDB:CLLocationCoordinate2D) -> Bool {
-        
-        print("matchCoords In \(coordinateIn) vs. \(coordFromDB)")
+
         if coordinateIn.latitude == coordFromDB.latitude && coordinateIn.longitude == coordFromDB.longitude {
             return true
         } else {
