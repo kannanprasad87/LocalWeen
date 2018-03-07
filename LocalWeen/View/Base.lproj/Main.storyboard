@@ -270,7 +270,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iog-ju-XXv" userLabel="AvRating">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iog-ju-XXv" userLabel="AvRating">
                                 <rect key="frame" x="275" y="42" width="100" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="DoV-2q-93H"/>
@@ -280,7 +280,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wp7-3a-4pD">
-                                <rect key="frame" x="170" y="318.5" width="34" height="30"/>
+                                <rect key="frame" x="170" y="518.5" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="Back:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="Cpj-LT-3O9"/>
@@ -296,7 +296,7 @@
                             <constraint firstItem="hcX-cw-dNL" firstAttribute="top" secondItem="oom-aF-AaX" secondAttribute="bottom" constant="20" id="7qJ-UD-HEB"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="centerX" secondItem="qIO-8f-P1o" secondAttribute="centerX" id="8N4-jF-bUU"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="bottom" secondItem="trj-j0-NGq" secondAttribute="bottom" constant="-5" id="8S5-JU-Yeo"/>
-                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerY" secondItem="8Xg-NG-fXF" secondAttribute="centerY" id="BIr-u8-JVZ"/>
+                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerY" secondItem="8Xg-NG-fXF" secondAttribute="centerY" constant="200" id="BIr-u8-JVZ"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="top" secondItem="trj-j0-NGq" secondAttribute="top" id="GMa-Wx-fc6"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="IBo-o0-jMY"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="Nk4-AX-PYg"/>

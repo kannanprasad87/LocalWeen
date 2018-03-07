@@ -34,7 +34,11 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         super.viewDidLoad()
         cosmosView.rating = 0
         reverseGeocodeCoordinate(coord!)
-        getLocationPhotos(coordinate: coord!)
+        //
+        //
+        //
+        //getLocationPhotos(coordinate: coord!)
+        
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
         }//if
@@ -130,15 +134,23 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     
     func averageRating(coordinate:CLLocationCoordinate2D){
         var totalRating:Double = 0
+        print("averageRating(coordinate: \(String(describing: coordinate))")
+        
         dbHandler.getFor(coordinateIn: coordinate, what: "ratings") { (ratings) in
             for rating in ratings {
                 totalRating += rating as! Double
             }//for ratings
             
+            guard totalRating >= 1.0 else { return}
             var av:Double = 0
             av = (Double(totalRating))/(Double(ratings.count))
+            if av < 1 {
+                self.averageRatingLabel.text = ""
+            }
             let avRatingStr = String(format: "%.2f", ceil(av * 100)/100)
             self.averageRatingLabel.text = "Average: " + avRatingStr
+        
+            
         }//dbHandler
     }//averageRating
     

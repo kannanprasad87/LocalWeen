@@ -17,25 +17,30 @@ class DBHandler{
         
         var ratings = [Double]()
         var fileNames = [String]()
+        var coordinates = [CLLocationCoordinate2D]()
         
         ref.observeSingleEvent(of: .value) { (snapshot) in
             if let snapshot =  snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshot {
                     if let data = snap.value as? [String:Any]{
-                        //Get the lattitude and longitude for matching
-                        guard let lattitude = data["lattitude"] else {
+                        //Get the latitude and longitude for matching
+                        guard let latitude = data["latitude"] else {
+                            print("Could not get lattitude in getFor request")
                             return
                         }
                         guard let longitude = data["longitude"] else {
+                            print("Could not get longitude in getFor request")
                             return
-                            
                         }
-                        let coordFromDB = CLLocationCoordinate2DMake(lattitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
+                    
+                        let coordFromDB = CLLocationCoordinate2DMake(latitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
                         
                         let isMatch = self.matchCoords(coordinateIn: coordinateIn!, coordFromDB: coordFromDB)
                         
+                        print("in switch.  what = \(what)")
+                        
                         switch what {
-                            
+                           
                             case "fileNames":
                                 guard let filename = data["image_name"] else {
                                     return
@@ -62,20 +67,27 @@ class DBHandler{
                                 }//isMatch
                             
                             case "coordinate":
-                                var coordinates = [CLLocationCoordinate2D]()
                                 coordinates.append(coordFromDB)
 
-                        default:
-                            return
+                            default:
+                                return
                         }//switch
                     }//data
                 }//for
             }//snapshot
+            if what == "ratings"{
+                completion(ratings)
+            } else if what == "fileNames" {
+                completion(fileNames)
+            } else {
+                completion(coordinates)
+            }
         }//ref
     }//get
     
     private func matchCoords(coordinateIn:CLLocationCoordinate2D, coordFromDB:CLLocationCoordinate2D) -> Bool {
         
+        print("matchCoords In \(coordinateIn) vs. \(coordFromDB)")
         if coordinateIn.latitude == coordFromDB.latitude && coordinateIn.longitude == coordFromDB.longitude {
             return true
         } else {
