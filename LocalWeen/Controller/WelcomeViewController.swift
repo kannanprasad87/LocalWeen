@@ -67,55 +67,6 @@ class WelcomeViewController: UIViewController {
         googleSignInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Defaults.buttonTrailingAnchor).isActive = true
     }
     
-    fileprivate func fetchUserProfileData(googleUser: GIDGoogleUser?) {
-        
-        //facebook
-        let params = ["fields": "email, first_name, last_name, picture"]
-        FBSDKGraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, result, error in
-            if let error = error {
-                print("Error getting FB social info \(String(describing: error))")
-                return
-            }
-                let fields = result as? [String:Any]
-                social.usrEmail = fields!["email"] as! String
-                social.usrGivenName = fields!["name_format"] as! String
-                let url = fields!["profile_pic"] as! URL
-                print("url \(String(describing: url))")
-                let session = URLSession.shared
-                session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print("Error getting data from URL: \(error)")
-                }
-                if let data = data {
-                    social.usrProfilePhoto  = UIImage(data: data)!
-                }
-            }.resume() //session.dataTask
-        })//FBSDKGraphRequest
-        
-        //google
-        guard let googleUsr = googleUser else {
-            return
-        }
-        social.usrEmail = (googleUsr.profile.email)
-        social.usrGivenName = (googleUsr.profile.givenName)
-        if (googleUsr.profile.hasImage) {
-            guard let url = (googleUsr.profile.imageURL(withDimension: 120)) else {
-                print("No url found for user social profile.  googleUsr.profile.imageURL is not found")
-                return
-            }
-            
-            let session = URLSession.shared
-            session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print("Error getting data from URL: \(error)")
-                }
-                if let data = data {
-                    social.usrProfilePhoto  = UIImage(data: data)!
-                }
-                }.resume() //session.dataTask
-        }//if user.profile.hasImage
-        
-    }
     
     // Basic Alert View
     fileprivate func showAlert(withTitle title: String, message: String) {
@@ -133,13 +84,11 @@ class WelcomeViewController: UIViewController {
 
 // MARK: - Facebook SDK Button Delegates
 extension WelcomeViewController: FBSDKLoginButtonDelegate {
-
     
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith loginResult: FBSDKLoginManagerLoginResult!, error: Error!) {
         if error != nil {
             showAlert(withTitle: "Error", message: error as! String)
-        } else if result.isCancelled {
+        } else if loginResult.isCancelled {
             
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
@@ -147,14 +96,46 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                 if let error = error {
                     self.showAlert(withTitle: "Error", message: error as! String)
                     return
-                }
-                    //Successful log in
-                print("********** fetchUserProfileData ***********")
-                self.fetchUserProfileData(googleUser: nil)
-                self.goToMap()
-            }
-        }//else
-    }//loginButton
+                }//error
+                //Successful log in
+             
+                let params = ["fields": "email, first_name, last_name, picture"]
+                FBSDKGraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, graphResult, error in
+                    if let error = error {
+                        print("Error getting FB social info \(String(describing: error))")
+                        return
+                    }//error
+                    let fields = graphResult as? [String:Any]
+                    
+                    if FBSDKAccessToken.current().hasGranted("email"){
+                        social.usrEmail = fields!["email"] as! String
+                    }//email
+                 
+                    if FBSDKAccessToken.current().hasGranted("first_name") {
+                        social.usrGivenName = fields!["first_name"] as! String
+                    }//first_name
+                    
+                    if FBSDKAccessToken.current().hasGranted("picture") {
+                        let url = fields!["picture"] as! URL
+                        print("url \(String(describing: url))")
+                        let session = URLSession.shared
+                        session.dataTask(with: url) { (data, response, error) in
+                            if let error = error {
+                                print("Error getting data from URL: \(error)")
+                            }//error
+                            if let data = data {
+                                social.usrProfilePhoto  = UIImage(data: data)!
+                            }//data
+                        } .resume() //session.dataTask
+                    }//FBSDKAccessToken
+                }//FBSDKGraphRequest
+            ) //completion handler //FBSDKGraphRequest
+        }//Auth
+    }//else
+        self.goToMap()
+}//loginButton
+                  
+  
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         showAlert(withTitle: "Success", message: "Successfully Logged out")
@@ -172,7 +153,9 @@ extension WelcomeViewController: GIDSignInDelegate {
         if let error = error{
             print((String(describing: error) ))
         }
-        fetchUserProfileData(googleUser: user)
+        
+        //MARK: GET GOOGLE PROFILE DATA HERE
+        
         goToMap()
     }
 }
