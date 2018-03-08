@@ -26,11 +26,34 @@
 				<string>com.googleusercontent.apps.1017704516363-9i6u8uc0iq05u3p3us32e35rc9vkg1fo</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb173024003482779</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>173024003482779</string>
+	<key>FacebookDisplayName</key>
+	<string>LocalWeen</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The app works better for you with this turned on</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app works better for you with this turned on</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -52,9 +75,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The app works better for you with this turned on</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app works better for you with this turned on</string>
 </dict>
 </plist>

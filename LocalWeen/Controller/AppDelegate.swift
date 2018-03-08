@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import GoogleMaps
 import Firebase
 import GoogleSignIn
+import GoogleMaps
 import GooglePlaces
+import FBSDKCoreKit
 
 class socialProfile{
     var usrGivenName = ""
@@ -21,17 +22,24 @@ class socialProfile{
 let social = socialProfile()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        //Google Firebase
         FirebaseApp.configure()
+        
+        //Google Maps
         GMSServices.provideAPIKey("AIzaSyCAL3awSh-YPf9HwawGLjBjukc6Kz9478k")
+        //Google Places
         GMSPlacesClient.provideAPIKey("AIzaSyD2RJCP9eoFaL3HPPfbYaetg_8BWhXCa24")
+        
+        //Google sign in
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+        
+        //Facebook sign in
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
@@ -50,12 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("Either the user already signed out or an error occured during Google Authentication")
             return
         }
-        //MARK: HERE WE CAN GRAB USER'S SOCIAL INFO
-        
         social.usrEmail = user.profile.email
         social.usrGivenName = user.profile.givenName
         if user.profile.hasImage {
-            //MARK: FIGURE OUT HOW TO GET URL TO IMAGE, can't find the code that works
             guard let url = (user.profile.imageURL(withDimension: 120)) else {
                 print("No url found for user social profile.  user.profile.imageURL is not found")
                 return

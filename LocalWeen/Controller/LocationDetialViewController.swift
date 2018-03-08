@@ -11,7 +11,6 @@ import GoogleMaps
 import Cosmos
 import CoreLocation
 
-
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     public var coord:CLLocationCoordinate2D? = CLLocationCoordinate2D()
@@ -34,7 +33,6 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         super.viewDidLoad()
         cosmosView.rating = 0
         reverseGeocodeCoordinate(coord!)
-        print("getLocationPhotos")
         getLocationPhotos(coordinate: coord!)
         
         if cosmosView.rating <= 0  {
@@ -133,8 +131,6 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     
     func averageRating(coordinate:CLLocationCoordinate2D){
         var totalRating:Double = 0
-        print("averageRating(coordinate: \(String(describing: coordinate))")
-        
         dbHandler.getFor(coordinateIn: coordinate, what: "ratings") { (ratings) in
             for rating in ratings {
                 totalRating += rating as! Double

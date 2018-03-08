@@ -7,45 +7,174 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 import GoogleSignIn
-import Firebase
+import FirebaseAuth
 
 
-class WelcomeViewController: UIViewController, GIDSignInUIDelegate {
+fileprivate enum Defaults {
+    static let buttonTopAnchor: CGFloat = 70.0
+    static let buttonLeadingAnchor: CGFloat = 32.0
+    static let buttonTrailingAnchor: CGFloat = 32.0
+    static let facebookLoginButtonHeight: CGFloat = 40.0
+}
+
+class WelcomeViewController: UIViewController {
+    
+    fileprivate let fbLoginButton = FBSDKLoginButton()
+    fileprivate let googleSignInButton = GIDSignInButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().uiDelegate = self
-        checkIfUserIsSignedIn()
-    }//viewDidLoad
-    
-    //creating the Google sign in button
-    fileprivate func configureGoogleSignInButton() {
-        
-            let googleSignInButton = GIDSignInButton()
-            view.addSubview(googleSignInButton)
-        
-    }//configureGoogleSignInButton
-    
-    private func checkIfUserIsSignedIn() {
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                print("User has authorization \(String(describing: user?.displayName))")
-                GIDSignIn.sharedInstance().signInSilently()
-                self.goToMap()
-            } else {
-                print("User is not authorized present Google Sign in button")
-                self.configureGoogleSignInButton()
-            }
-        }
+        initialUISetups()
     }
     
-    func goToMap(){
+    // MARK: - Initial UI Setups
+    fileprivate func initialUISetups() {
+        facebookButtonSetup()
+        googleButtonSetup()
+    }
+    
+    // MARK: Facebook Sign In Button Setup
+    
+    fileprivate func facebookButtonSetup() {
+        // Facebook Login Button Setups
+        view.addSubview(fbLoginButton)
+        fbLoginButton.delegate = self
+        if let facebookButtonHeightConstraint = fbLoginButton.constraints.first(where: { $0.firstAttribute == .height }) {
+            fbLoginButton.removeConstraint(facebookButtonHeightConstraint)
+        }
+        // Add Constraints to fb login button
+        fbLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        fbLoginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Defaults.buttonTopAnchor).isActive = true
+        fbLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Defaults.buttonLeadingAnchor).isActive = true
+        fbLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Defaults.buttonTrailingAnchor).isActive = true
+        fbLoginButton.heightAnchor.constraint(equalToConstant: Defaults.facebookLoginButtonHeight).isActive = true
+    }
+    
+    // MARK: Google Sign In Button Setup
+    
+    fileprivate func googleButtonSetup() {
+        // Google Sign In Button Setups
+        view.addSubview(googleSignInButton)
+        googleSignInButton.style = .wide
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        // Add Constraints to Google Sign In Button
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.topAnchor.constraint(equalTo: fbLoginButton.topAnchor, constant: Defaults.buttonTopAnchor).isActive = true
+        googleSignInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Defaults.buttonLeadingAnchor).isActive = true
+        googleSignInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Defaults.buttonTrailingAnchor).isActive = true
+    }
+    
+    fileprivate func fetchUserProfileData(googleUser: GIDGoogleUser?) {
+        
+        //facebook
+        let params = ["fields": "email, first_name, last_name, picture"]
+        FBSDKGraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, result, error in
+            if let error = error {
+                print("Error getting FB social info \(String(describing: error))")
+                return
+            }
+                let fields = result as? [String:Any]
+                social.usrEmail = fields!["email"] as! String
+                social.usrGivenName = fields!["name_format"] as! String
+                let url = fields!["profile_pic"] as! URL
+                print("url \(String(describing: url))")
+                let session = URLSession.shared
+                session.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print("Error getting data from URL: \(error)")
+                }
+                if let data = data {
+                    social.usrProfilePhoto  = UIImage(data: data)!
+                }
+            }.resume() //session.dataTask
+        })//FBSDKGraphRequest
+        
+        //google
+        guard let googleUsr = googleUser else {
+            return
+        }
+        social.usrEmail = (googleUsr.profile.email)
+        social.usrGivenName = (googleUsr.profile.givenName)
+        if (googleUsr.profile.hasImage) {
+            guard let url = (googleUsr.profile.imageURL(withDimension: 120)) else {
+                print("No url found for user social profile.  googleUsr.profile.imageURL is not found")
+                return
+            }
+            
+            let session = URLSession.shared
+            session.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print("Error getting data from URL: \(error)")
+                }
+                if let data = data {
+                    social.usrProfilePhoto  = UIImage(data: data)!
+                }
+                }.resume() //session.dataTask
+        }//if user.profile.hasImage
+        
+    }
+    
+    // Basic Alert View
+    fileprivate func showAlert(withTitle title: String, message: String) {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertView.addAction(okAction)
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    private func goToMap(){
         performSegue(withIdentifier: "toMap", sender: self)
     }//goToMap
     
+}//fetchUserProfileData
+
+// MARK: - Facebook SDK Button Delegates
+extension WelcomeViewController: FBSDKLoginButtonDelegate {
+
     
     
-}//WelcomeViewController
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            showAlert(withTitle: "Error", message: error as! String)
+        } else if result.isCancelled {
+            
+        } else {
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    self.showAlert(withTitle: "Error", message: error as! String)
+                    return
+                }
+                    //Successful log in
+                print("********** fetchUserProfileData ***********")
+                self.fetchUserProfileData(googleUser: nil)
+                self.goToMap()
+            }
+        }//else
+    }//loginButton
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        showAlert(withTitle: "Success", message: "Successfully Logged out")
+    }
+}
+
+// MARK: - Google Sign In Delgates
+extension WelcomeViewController: GIDSignInUIDelegate {
+    
+}
+
+extension WelcomeViewController: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error{
+            print((String(describing: error) ))
+        }
+        fetchUserProfileData(googleUser: user)
+        goToMap()
+    }
+}
+
 

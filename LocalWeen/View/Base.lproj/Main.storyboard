@@ -19,15 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zA5-KR-WMv" customClass="GIDSignInButton">
-                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="UGA-fZ-mZ7"/>
-                                </constraints>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloweenWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="iS6-sw-Zxb">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-7T-rgC" userLabel="Legal">
                                 <rect key="frame" x="167" y="607" width="40" height="40"/>
@@ -42,15 +35,12 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A9o-8g-fOy"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="top" secondItem="zA5-KR-WMv" secondAttribute="bottom" id="Noe-BB-CVf"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Vb-JW-aZ5"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="LAe-rD-Xs2"/>
                             <constraint firstItem="UPF-7T-rgC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VsZ-tw-rD6"/>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="dCG-kh-804"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="g37-Bj-uat"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UPF-7T-rgC" secondAttribute="bottom" constant="20" id="l20-fL-DnJ"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nJO-Tk-Njs"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q0c-Bq-8g5"/>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tNw-46-1dm"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kbF-1S-enk"/>
+                            <constraint firstItem="UPF-7T-rgC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="l20-fL-DnJ"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="t6j-Gi-nzW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
