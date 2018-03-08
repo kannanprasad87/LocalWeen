@@ -254,6 +254,12 @@
                                     <constraint firstAttribute="height" constant="200" id="Fg0-I9-ggk"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-1W-GbU" userLabel="ExistingImgs">
+                                <rect key="frame" x="0.0" y="317" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="3HU-re-iHy"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qIO-8f-P1o" userLabel="UserImg">
                                 <rect key="frame" x="157" y="567" width="60" height="60"/>
                                 <constraints>
@@ -280,7 +286,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wp7-3a-4pD">
-                                <rect key="frame" x="170" y="518.5" width="34" height="30"/>
+                                <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="XZX-nq-EQy"/>
+                                    <constraint firstAttribute="width" constant="40" id="dVR-lY-7Wt"/>
+                                </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="Back:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="Cpj-LT-3O9"/>
@@ -292,30 +302,33 @@
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="leading" id="0GN-UW-oP0"/>
                             <constraint firstItem="Lal-6F-jCF" firstAttribute="centerY" secondItem="oom-aF-AaX" secondAttribute="centerY" id="0jD-2q-ccU"/>
                             <constraint firstItem="iog-ju-XXv" firstAttribute="bottom" secondItem="jvZ-xY-PMR" secondAttribute="bottom" id="1A2-xB-HlL"/>
+                            <constraint firstItem="gDv-1W-GbU" firstAttribute="leading" secondItem="hcX-cw-dNL" secondAttribute="leading" id="1mh-dO-bMG"/>
                             <constraint firstItem="Lur-L5-KaX" firstAttribute="leading" secondItem="oom-aF-AaX" secondAttribute="trailing" constant="90" id="3GC-b9-IXv"/>
                             <constraint firstItem="hcX-cw-dNL" firstAttribute="top" secondItem="oom-aF-AaX" secondAttribute="bottom" constant="20" id="7qJ-UD-HEB"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="centerX" secondItem="qIO-8f-P1o" secondAttribute="centerX" id="8N4-jF-bUU"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="bottom" secondItem="trj-j0-NGq" secondAttribute="bottom" constant="-5" id="8S5-JU-Yeo"/>
-                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerY" secondItem="8Xg-NG-fXF" secondAttribute="centerY" constant="200" id="BIr-u8-JVZ"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="top" secondItem="trj-j0-NGq" secondAttribute="top" id="GMa-Wx-fc6"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="IBo-o0-jMY"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="centerX" secondItem="mfB-lw-nuM" secondAttribute="centerX" id="Nk4-AX-PYg"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="leading" id="NpR-ml-RIm"/>
-                            <constraint firstItem="trj-j0-NGq" firstAttribute="trailing" secondItem="iog-ju-XXv" secondAttribute="trailing" id="Pks-Ff-lNY"/>
-                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="centerX" secondItem="8Xg-NG-fXF" secondAttribute="centerX" id="QLt-dG-nMO"/>
+                            <constraint firstItem="iog-ju-XXv" firstAttribute="trailing" secondItem="trj-j0-NGq" secondAttribute="trailing" id="Pks-Ff-lNY"/>
                             <constraint firstItem="Lal-6F-jCF" firstAttribute="leading" secondItem="oom-aF-AaX" secondAttribute="leading" constant="-90" id="SVm-eO-z7o"/>
                             <constraint firstItem="oom-aF-AaX" firstAttribute="top" secondItem="jvZ-xY-PMR" secondAttribute="bottom" constant="5" id="U1L-A3-hUd"/>
                             <constraint firstItem="mfB-lw-nuM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="trailing" id="UAe-Mf-RjQ"/>
                             <constraint firstItem="qIO-8f-P1o" firstAttribute="centerX" secondItem="hcX-cw-dNL" secondAttribute="centerX" id="VDD-CT-bby"/>
                             <constraint firstItem="iog-ju-XXv" firstAttribute="top" secondItem="jvZ-xY-PMR" secondAttribute="top" id="Vbr-Qo-38s"/>
+                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="leading" secondItem="trj-j0-NGq" secondAttribute="leading" id="X8r-qi-WJd"/>
                             <constraint firstItem="hcX-cw-dNL" firstAttribute="trailing" secondItem="trj-j0-NGq" secondAttribute="trailing" id="a7a-Qb-8hR"/>
+                            <constraint firstItem="gDv-1W-GbU" firstAttribute="top" secondItem="hcX-cw-dNL" secondAttribute="bottom" id="gKL-Ai-L3T"/>
                             <constraint firstItem="Lur-L5-KaX" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="trailing" constant="-36" id="kXx-Su-A0L"/>
                             <constraint firstItem="hcX-cw-dNL" firstAttribute="leading" secondItem="trj-j0-NGq" secondAttribute="leading" id="l23-n1-MPE"/>
                             <constraint firstItem="Lur-L5-KaX" firstAttribute="top" secondItem="Lal-6F-jCF" secondAttribute="top" id="oRL-uE-dIA"/>
                             <constraint firstItem="qIO-8f-P1o" firstAttribute="bottom" secondItem="trj-j0-NGq" secondAttribute="bottom" constant="-40" id="pTp-7m-GWE"/>
                             <constraint firstItem="Hu0-mV-P3h" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="trj-j0-NGq" secondAttribute="trailing" id="qgK-Oo-Lnv"/>
                             <constraint firstItem="oom-aF-AaX" firstAttribute="centerX" secondItem="jvZ-xY-PMR" secondAttribute="centerX" id="qst-iM-as3"/>
+                            <constraint firstItem="Wp7-3a-4pD" firstAttribute="top" secondItem="trj-j0-NGq" secondAttribute="top" id="svs-GU-Mdh"/>
                             <constraint firstItem="jvZ-xY-PMR" firstAttribute="top" secondItem="mfB-lw-nuM" secondAttribute="bottom" constant="2" id="tTH-2Y-05R"/>
+                            <constraint firstItem="gDv-1W-GbU" firstAttribute="trailing" secondItem="hcX-cw-dNL" secondAttribute="trailing" id="tpm-bG-izz"/>
                             <constraint firstItem="iog-ju-XXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Xg-NG-fXF" secondAttribute="leading" constant="5" id="vyt-gU-Ham"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="trj-j0-NGq"/>
@@ -326,6 +339,7 @@
                         <outlet property="addressLabel" destination="mfB-lw-nuM" id="1xM-db-CqK"/>
                         <outlet property="averageRatingLabel" destination="iog-ju-XXv" id="NqQ-1O-bXi"/>
                         <outlet property="cosmosView" destination="jvZ-xY-PMR" id="to1-PO-IcP"/>
+                        <outlet property="existingPhotos" destination="gDv-1W-GbU" id="916-5E-aP1"/>
                         <outlet property="userChosenPhotoFromGalleryOrCamera" destination="hcX-cw-dNL" id="hYw-Ow-4sY"/>
                         <outlet property="usrGivenName" destination="Hu0-mV-P3h" id="ONN-M4-kaN"/>
                         <outlet property="usrProfilePhoto" destination="qIO-8f-P1o" id="aJm-g8-MjS"/>

@@ -16,7 +16,9 @@ target 'LocalWeen' do
    pod 'FirebaseUI/Storage'
    pod 'GooglePlaces'
 
+    # Agrume Image Viewer
+    pod 'Agrume', :git => 'https://github.com/JanGorman/Agrume.git'
    
-   #Cosmos Pod
+   #Cosmos Pod (ratings)
    pod 'Cosmos', '~> 15.0'
 end

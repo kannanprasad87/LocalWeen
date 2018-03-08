@@ -7,9 +7,10 @@
 
 
 import UIKit
-import GoogleMaps
 import Cosmos
 import CoreLocation
+import Agrume
+import GoogleMaps
 
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -28,6 +29,15 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var usrProfilePhoto: UIImageView!
     @IBOutlet weak var usrGivenName: UILabel!
     @IBOutlet weak var averageRatingLabel: UILabel!
+    @IBOutlet weak var existingPhotos: UIImageView!
+    
+    
+    //My code
+    var agrume: Agrume!
+    // current image to track which image to view
+    var currentImage = 0
+    // Array of photoes
+    var photos = [UIImage?]()
     
     
     override func viewDidLoad() {
@@ -47,6 +57,16 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
         averageRating(coordinate: coord!)
+        
+        // prepare UIImage view for swipe gesture recognizer
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(imageSwiped(gestureRecognizer:)))
+        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.left
+        existingPhotos.isUserInteractionEnabled = true
+        existingPhotos.addGestureRecognizer(leftSwipeGesture)
+        
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(imageSwiped(gestureRecognizer:)))
+        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
+        existingPhotos.addGestureRecognizer(rightSwipeGesture)
         
     }//viewDidLoad
     
@@ -125,8 +145,15 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     //MARK: Get Location Photos
     func getLocationPhotos(coordinate:CLLocationCoordinate2D){
         dbHandler.getFor(coordinateIn: coordinate, what: "fileNames") { (fileNames) in
-            for file in fileNames{
-                print("\(String(describing: file))")
+            for file in fileNames {
+                //grab photo and stick it in the UI
+                let image = self.storageHandler.downLoad(filename: file as! String)
+                //take the downloaded photos and put them into a very nice photo gallery
+                // Add photo to the array of photos
+                if let photo = image.image {
+                    self.photos.append(photo)
+                    self.existingPhotos.image = photo
+                }//if
             }//for
         }//dbHandler
     }//getLocationPhotos
@@ -157,5 +184,53 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         performSegue(withIdentifier: "toMap", sender: self)
     }//Back
     
+    
+    // gesture recognizer code
+    @objc func imageSwiped(gestureRecognizer: UIGestureRecognizer) {
+        var currentImage = 0
+        var photos = [UIImage?]()
+        
+        if let swipeGesture = gestureRecognizer as? UISwipeGestureRecognizer{
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.left :
+                print("left Swipe")
+                if currentImage == photos.count - 1 {
+                    currentImage = 0
+                    
+                }else{
+                    currentImage += 1
+                    
+                }
+                // show photo on the imageView
+                
+                //INDEX OUT OF RANGE ON FIRST RUN ONLY
+                if let image = photos[currentImage]{
+                    self.existingPhotos.image = image
+                }
+            case UISwipeGestureRecognizerDirection.right:
+                print("Right Swipe")
+                if currentImage == 0 {
+                    print("photos.count = \(photos.count)")
+                    print("photos.count = \(photos.count - 1)")
+                    
+                    //HERE PHOTOS.COUNT CAN BE - 1 IF SWIPE LEFT
+                    currentImage = photos.count - 1
+                }else{
+                    currentImage -= 1
+                    
+                }
+                // show photo on the imageView
+                //ON LEFT SWIPE THIS IS INDEX OUT OF RANGE
+                print("currentImage \(String(describing: currentImage ))")
+                if let image = photos[currentImage]{
+                    self.existingPhotos.image = image
+                }
+            default:
+                break
+            }
+        }
+        
+    }
     
 }//LocationDetailViewController
