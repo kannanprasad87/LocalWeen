@@ -36,6 +36,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hide the back button of navigation view controller, as it is not needed here
+        self.navigationItem.hidesBackButton = true
+        
         //Search Bar
         isSearchResult = false
         resultsViewController = GMSAutocompleteResultsViewController()

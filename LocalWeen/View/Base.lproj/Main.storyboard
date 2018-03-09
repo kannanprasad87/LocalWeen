@@ -115,21 +115,14 @@
                                             <segue destination="BYZ-38-t0r" kind="show" id="gIk-lJ-S3n"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-oD-Ah8" userLabel="Search">
-                                        <rect key="frame" x="5" y="0.0" width="48" height="30"/>
-                                        <state key="normal" title="Search"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="centerX" secondItem="wrf-3v-3A8" secondAttribute="centerX" id="ATH-RO-nHW"/>
                                     <constraint firstAttribute="height" constant="30" id="EY1-O3-bj4"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="leading" secondItem="wrf-3v-3A8" secondAttribute="leading" constant="5" id="RDW-9T-HHn"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="cle-Al-wTh"/>
                                     <constraint firstAttribute="bottom" secondItem="9ZX-Gr-f0a" secondAttribute="bottomMargin" constant="8" id="kVM-aF-noS"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="trailing" secondItem="wrf-3v-3A8" secondAttribute="trailing" constant="-5" id="olN-o7-R6v"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="top" id="uNo-W9-CWx"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="z2D-Zu-A6a"/>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="top" id="zJK-Ln-OrK"/>
                                 </constraints>
                             </view>

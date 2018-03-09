@@ -26,6 +26,10 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        //hide the back button of navigation view controller, as it is not needed here
+        //Handles an edge case where user CANCELED sign in and got to the welcome screen again
+        self.navigationItem.hidesBackButton = true
         
         //if user already logged in to FB, go to map
         if FBSDKAccessToken.current() != nil{
@@ -94,7 +98,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
         if error != nil {
             showAlert(withTitle: "Error", message: error as! String)
         } else if loginResult.isCancelled {
-            
+            return
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
