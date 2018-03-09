@@ -164,8 +164,9 @@ extension WelcomeViewController: GIDSignInDelegate {
         }
         
         //MARK: GET GOOGLE PROFILE DATA HERE
-        
-        goToMap()
+        if signIn.hasAuthInKeychain(){
+            goToMap()
+        }
     }
 }
 
