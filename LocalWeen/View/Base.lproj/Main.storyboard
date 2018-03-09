@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="116"/>
+            <point key="canvasLocation" x="1255" y="116"/>
         </scene>
         <!--Detail-->
         <scene sceneID="WCs-Gh-1bg">
@@ -351,6 +351,7 @@
         <image name="picture_add" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="X3e-4a-wME"/>
         <segue reference="V0K-la-yRS"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>

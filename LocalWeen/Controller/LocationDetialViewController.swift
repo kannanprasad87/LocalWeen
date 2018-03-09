@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Cosmos
 import CoreLocation
+import FBSDKLoginKit
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

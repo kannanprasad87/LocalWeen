@@ -26,6 +26,11 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //if user already logged in to FB, go to map
+        if FBSDKAccessToken.current() != nil{
+            goToMap()
+        }
         initialUISetups()
     }
     
