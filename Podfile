@@ -15,6 +15,9 @@ target 'LocalWeen' do
    pod 'GoogleSignIn'
    pod 'FirebaseUI/Storage'
    pod 'GooglePlaces'
+   
+   #Facebook
+   pod 'FBSDKLoginKit'
 
    
    #Cosmos Pod

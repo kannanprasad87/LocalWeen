@@ -19,15 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zA5-KR-WMv" customClass="GIDSignInButton">
-                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="UGA-fZ-mZ7"/>
-                                </constraints>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloweenWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="iS6-sw-Zxb">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-7T-rgC" userLabel="Legal">
                                 <rect key="frame" x="167" y="607" width="40" height="40"/>
@@ -42,15 +35,12 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A9o-8g-fOy"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="top" secondItem="zA5-KR-WMv" secondAttribute="bottom" id="Noe-BB-CVf"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Vb-JW-aZ5"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="LAe-rD-Xs2"/>
                             <constraint firstItem="UPF-7T-rgC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VsZ-tw-rD6"/>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="dCG-kh-804"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="g37-Bj-uat"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UPF-7T-rgC" secondAttribute="bottom" constant="20" id="l20-fL-DnJ"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nJO-Tk-Njs"/>
-                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q0c-Bq-8g5"/>
-                            <constraint firstItem="zA5-KR-WMv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tNw-46-1dm"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kbF-1S-enk"/>
+                            <constraint firstItem="UPF-7T-rgC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="l20-fL-DnJ"/>
+                            <constraint firstItem="iS6-sw-Zxb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="t6j-Gi-nzW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -125,21 +115,14 @@
                                             <segue destination="BYZ-38-t0r" kind="show" id="gIk-lJ-S3n"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-oD-Ah8" userLabel="Search">
-                                        <rect key="frame" x="5" y="0.0" width="48" height="30"/>
-                                        <state key="normal" title="Search"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="centerX" secondItem="wrf-3v-3A8" secondAttribute="centerX" id="ATH-RO-nHW"/>
                                     <constraint firstAttribute="height" constant="30" id="EY1-O3-bj4"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="leading" secondItem="wrf-3v-3A8" secondAttribute="leading" constant="5" id="RDW-9T-HHn"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="cle-Al-wTh"/>
                                     <constraint firstAttribute="bottom" secondItem="9ZX-Gr-f0a" secondAttribute="bottomMargin" constant="8" id="kVM-aF-noS"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="trailing" secondItem="wrf-3v-3A8" secondAttribute="trailing" constant="-5" id="olN-o7-R6v"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="top" id="uNo-W9-CWx"/>
-                                    <constraint firstItem="BiZ-oD-Ah8" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="z2D-Zu-A6a"/>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="top" id="zJK-Ln-OrK"/>
                                 </constraints>
                             </view>
@@ -161,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="116"/>
+            <point key="canvasLocation" x="1255" y="116"/>
         </scene>
         <!--Detail-->
         <scene sceneID="WCs-Gh-1bg">
@@ -361,6 +344,7 @@
         <image name="picture_add" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="X3e-4a-wME"/>
         <segue reference="V0K-la-yRS"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>

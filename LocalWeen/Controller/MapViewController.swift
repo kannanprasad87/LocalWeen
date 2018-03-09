@@ -11,6 +11,7 @@ import GoogleMaps
 import FirebaseDatabase
 import GoogleSignIn
 import GooglePlaces
+import FBSDKLoginKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -35,6 +36,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hide the back button of navigation view controller, as it is not needed here
+        self.navigationItem.hidesBackButton = true
+        
         //Search Bar
         isSearchResult = false
         resultsViewController = GMSAutocompleteResultsViewController()
@@ -132,10 +137,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
         
     }
-
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signOut()
+        FBSDKLoginManager().logOut()
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
