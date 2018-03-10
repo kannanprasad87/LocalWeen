@@ -19,7 +19,14 @@ class socialProfile{
     var usrProfilePhoto = UIImage()
 }
 
+class FromTo{
+    var fromAddress = CLLocationCoordinate2D()
+    var toAddress = CLLocationCoordinate2D()
+    
+}
+
 let social = socialProfile()
+let fromTo = FromTo()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

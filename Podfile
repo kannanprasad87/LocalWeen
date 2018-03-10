@@ -15,6 +15,7 @@ target 'LocalWeen' do
    pod 'GoogleSignIn'
    pod 'FirebaseUI/Storage'
    pod 'GooglePlaces'
+   pod 'OpenInGoogleMaps'
    
    #Facebook
    pod 'FBSDKLoginKit'
@@ -22,4 +23,7 @@ target 'LocalWeen' do
    
    #Cosmos Pod
    pod 'Cosmos', '~> 15.0'
+   
+   #Agrume
+   pod 'Agrume'
 end

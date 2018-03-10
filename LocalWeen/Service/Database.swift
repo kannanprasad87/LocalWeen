@@ -14,7 +14,6 @@ class DBHandler{
     
     
     func getFor(coordinateIn:CLLocationCoordinate2D?, what: String, completion: @escaping ([Any]) -> ())  {
-        
         var ratings = [Double]()
         var fileNames = [String]()
         var coordinates = [CLLocationCoordinate2D]()

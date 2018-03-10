@@ -33,7 +33,6 @@ struct StorageHandler {
         let filename = "\(formatter.string(from: NSDate() as Date)).jpg"
         let uploadImageRef = imageReference.child(filename)
         
-        
         let uploadTask = uploadImageRef.putData(imageData, metadata: metadata) { (metadata, error) in
             if metadata == nil{
                 fatalError("Missing image metadata")
@@ -52,10 +51,18 @@ struct StorageHandler {
         return filename
     }//upload
     
-    func downLoad(filename: String) -> UIImageView{
-        let reference = imageReference.child(filename)
+    func downLoad(filename: String, completion: @escaping (UIImageView) -> ()) {
+        print("")
+        
+        let downloadImageRef = imageReference.child(filename)
         let imageView: UIImageView = UIImageView()
-        imageView.sd_setImage(with: reference)
-        return imageView
-    }
+        downloadImageRef.getData(maxSize: 5242880) { (data, error) in
+            if let error = error {
+                print("Error downloading image \(String(describing: error))")
+                return
+            }//error
+            imageView.sd_setImage(with: downloadImageRef)
+        }//downImageRef
+        completion(imageView)
+    }//downLoad
 }

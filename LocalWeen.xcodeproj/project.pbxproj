@@ -10,6 +10,9 @@
 		3BA9703D3C93AAADC438F805 /* Pods_LocalWeen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52BD55132D16716DBB1917A /* Pods_LocalWeen.framework */; };
 		CE23C559204B4B32004E090A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C558204B4B32004E090A /* Database.swift */; };
 		CE23C55B204B5B0E004E090A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C55A204B5B0E004E090A /* Storage.swift */; };
+		CE46350020524529002DC87D /* OpenInGoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4634FF20524529002DC87D /* OpenInGoogleMaps.swift */; };
+		CE46350720531BA0002DC87D /* DirectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46350620531BA0002DC87D /* DirectionsTableViewController.swift */; };
+		CE46350920532361002DC87D /* LocationDetialViewController+Agrume.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46350820532361002DC87D /* LocationDetialViewController+Agrume.swift */; };
 		CE567EA4204E178700C457BD /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE567EA3204E178600C457BD /* LegalViewController.swift */; };
 		CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17DFE204A194E0075351E /* AppDelegate.swift */; };
 		CEC17E04204A194F0075351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC17E02204A194F0075351E /* Main.storyboard */; };
@@ -26,6 +29,10 @@
 		CD3F74A393E63CB568FC000F /* Pods-LocalWeen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.debug.xcconfig"; sourceTree = "<group>"; };
 		CE23C558204B4B32004E090A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		CE23C55A204B5B0E004E090A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		CE4634FF20524529002DC87D /* OpenInGoogleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenInGoogleMaps.swift; sourceTree = "<group>"; };
+		CE4635012052F533002DC87D /* LocalWeen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalWeen-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE46350620531BA0002DC87D /* DirectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsTableViewController.swift; sourceTree = "<group>"; };
+		CE46350820532361002DC87D /* LocationDetialViewController+Agrume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetialViewController+Agrume.swift"; sourceTree = "<group>"; };
 		CE567EA3204E178600C457BD /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		CE7F78412051EC670021E93C /* LocalWeen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocalWeen.entitlements; sourceTree = "<group>"; };
 		CEC17DFB204A194E0075351E /* LocalWeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +80,7 @@
 		CEC17DF2204A194E0075351E = {
 			isa = PBXGroup;
 			children = (
+				CE4635012052F533002DC87D /* LocalWeen-Bridging-Header.h */,
 				CEC17DFD204A194E0075351E /* LocalWeen */,
 				CEC17DFC204A194E0075351E /* Products */,
 				265C4CA33170FB1F05C5A0BE /* Pods */,
@@ -106,6 +114,7 @@
 			children = (
 				CE23C558204B4B32004E090A /* Database.swift */,
 				CE23C55A204B5B0E004E090A /* Storage.swift */,
+				CE4634FF20524529002DC87D /* OpenInGoogleMaps.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -118,6 +127,8 @@
 				CEC17E1A204A30A30075351E /* MapViewController.swift */,
 				CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */,
 				CE567EA3204E178600C457BD /* LegalViewController.swift */,
+				CE46350620531BA0002DC87D /* DirectionsTableViewController.swift */,
+				CE46350820532361002DC87D /* LocationDetialViewController+Agrume.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -240,7 +251,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -254,6 +267,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Agrume/Agrume.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -261,12 +275,14 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/OpenInGoogleMaps/OpenInGoogleMaps.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agrume.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -274,6 +290,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenInGoogleMaps.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -290,13 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE46350020524529002DC87D /* OpenInGoogleMaps.swift in Sources */,
 				CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
 				CE567EA4204E178700C457BD /* LegalViewController.swift in Sources */,
 				CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */,
 				CE23C559204B4B32004E090A /* Database.swift in Sources */,
 				CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */,
+				CE46350920532361002DC87D /* LocationDetialViewController+Agrume.swift in Sources */,
 				CE23C55B204B5B0E004E090A /* Storage.swift in Sources */,
+				CE46350720531BA0002DC87D /* DirectionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +463,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = LocalWeen;
 			};
 			name = Debug;
 		};
@@ -460,6 +481,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = LocalWeen;
 			};
 			name = Release;
 		};

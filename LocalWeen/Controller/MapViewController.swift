@@ -21,6 +21,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private var userMarker = GMSMarker()
     var locationManager = CLLocationManager()
     
+    //Directions Support
+    private let directionsHandler = Directions()
+    
     //Constants
     private let zoom:Float = 15
     let locationOfInterestImage = "hhouseicon"
@@ -86,6 +89,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.locationManager.stopUpdatingLocation()
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, marker: self.userMarker, imageName: userMarkerImage)
+        //Set the possible 'From' location for directions
+        fromTo.fromAddress = location.coordinate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -144,8 +149,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        //user tapped at marker, so perhaps this is the TO location for directions
+        fromTo.toAddress = marker.position
+            
         performSegue(withIdentifier: "toDetail", sender: self)
         return false
+    }
+    
+    
+    @IBAction func directionsButton(_ sender: UIButton) {
+        
     }
     
 }//MapViewController
@@ -160,6 +173,9 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
         isSearchResult = true
         searchCoordinates = place.coordinate
+        
+        //Since user searched, this is possibly the desired TO location for directions
+        fromTo.toAddress = searchCoordinates
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

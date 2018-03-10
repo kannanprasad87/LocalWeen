@@ -11,11 +11,17 @@ import GoogleMaps
 import Cosmos
 import CoreLocation
 import FBSDKLoginKit
+import Agrume
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //Support for Photo Gallery
+    var agrume: Agrume!
+    var currentImage = 0
+    var photos = [UIImage?]()
+    
     public var coord:CLLocationCoordinate2D? = CLLocationCoordinate2D()
-    private let dbHandler = DBHandler()
+    let dbHandler = DBHandler()
     private let storageHandler = StorageHandler()
     private let locationManager = CLLocationManager()
     private var picker:UIImagePickerController?=UIImagePickerController()
@@ -28,14 +34,19 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var usrProfilePhoto: UIImageView!
     @IBOutlet weak var usrGivenName: UILabel!
     @IBOutlet weak var averageRatingLabel: UILabel!
-    
+    @IBOutlet weak var locationPhotos: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cosmosView.rating = 0
+      
+        //MARK: Reverse Geocode for address
         reverseGeocodeCoordinate(coord!)
+        
+        //MARK: Get Existing photos for address
         getLocationPhotos(coordinate: coord!)
         
+        //MARK: Cosmos Ratings setup
+        cosmosView.rating = 0
         if cosmosView.rating <= 0  {
             addButton.isEnabled = false
         }//if
@@ -46,6 +57,20 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         usrGivenName.text = social.usrGivenName
         usrProfilePhoto.image = social.usrProfilePhoto
         averageRating(coordinate: coord!)
+        
+        //MARK: Argume Photo Collection View
+        // prepare UIImage view for swipe gesture recognizer
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(imageSwiped(gestureRecognizer:)))
+        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.left
+        locationPhotos.isUserInteractionEnabled = true
+        locationPhotos.addGestureRecognizer(leftSwipeGesture)
+        
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(imageSwiped(gestureRecognizer:)))
+        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
+        locationPhotos.addGestureRecognizer(rightSwipeGesture)
+        
+        
+        
         
     }//viewDidLoad
     
@@ -121,14 +146,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         }//else
     }//openCamera
     
-    //MARK: Get Location Photos
-    func getLocationPhotos(coordinate:CLLocationCoordinate2D){
-        dbHandler.getFor(coordinateIn: coordinate, what: "fileNames") { (fileNames) in
-            for file in fileNames{
-                print("\(String(describing: file))")
-            }//for
-        }//dbHandler
-    }//getLocationPhotos
+
     
     func averageRating(coordinate:CLLocationCoordinate2D){
         var totalRating:Double = 0
