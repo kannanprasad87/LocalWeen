@@ -56,6 +56,10 @@ extension LocationDetialViewController {
                 if file as! String != "" {
                     storageHandler.downLoad(filename: file as! String, completion: { (photoView) in
                         if let image = photoView.image {
+                            /*
+                            The bug is here, but i am not 100% sure what is wrong or how to fix
+                             
+                             */
                             self.photos.append(image)
                             self.locationPhotos.image = image
                         }//image
