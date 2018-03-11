@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Cosmos
 import CoreLocation
+import MapKit
 
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -152,6 +153,34 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             
         }//dbHandler
     }//averageRating
+    
+    
+    @IBAction func directionsButton(_ sender: UIButton) {
+       
+        var mapItems = [MKMapItem]()
+        
+        //From
+        let fromPlace = MKPlacemark(coordinate: directions.fromCoordinate)
+        let fromMapItem = MKMapItem(placemark: fromPlace)
+        fromMapItem.name = "Current Location"
+        mapItems.append(fromMapItem)
+        
+        //TO
+        let toPlace = MKPlacemark(coordinate: directions.toCoordinate)
+        let toMapItem = MKMapItem(placemark: toPlace)
+        toMapItem.name = "Where to go"
+        mapItems.append(toMapItem)
+        
+        //Open driving directions
+        let regionDistance:CLLocationDistance = 100
+        let regionSpan = MKCoordinateRegionMakeWithDistance(directions.fromCoordinate, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span),
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving] as [String : Any]
+        
+        MKMapItem.openMaps(with: mapItems, launchOptions: options)
+    }
     
     @IBAction func Back(_ sender: UIButton) {
         performSegue(withIdentifier: "toMap", sender: self)

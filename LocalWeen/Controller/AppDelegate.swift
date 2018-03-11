@@ -12,13 +12,6 @@ import Firebase
 import GoogleSignIn
 import GooglePlaces
 
-class socialProfile{
-    var usrGivenName = ""
-    var usrEmail = ""
-    var usrProfilePhoto = UIImage()
-}
-
-let social = socialProfile()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {

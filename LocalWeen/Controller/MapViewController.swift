@@ -87,8 +87,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
         if isSearchResult {
             //User searched for a location so maybe they want to add it
+            //and maybe they want to drive there
+            
+            directions.toCoordinate = searchCoordinates
+            
                 if let destination = segue.destination as? LocationDetialViewController {
-
+                    
+                    
                     destination.coord = searchCoordinates
                 } else {
                     return
@@ -155,6 +160,7 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
         isSearchResult = true
         searchCoordinates = place.coordinate
+        
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
