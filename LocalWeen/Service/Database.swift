@@ -35,7 +35,12 @@ class DBHandler{
                     
                         let coordFromDB = CLLocationCoordinate2DMake(latitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
                         
-                        let isMatch = self.matchCoords(coordinateIn: coordinateIn!, coordFromDB: coordFromDB)
+                        var isMatch = Bool()
+                        isMatch = false
+                        
+                        if coordinateIn != nil {
+                            isMatch = self.matchCoords(coordinateIn: coordinateIn!, coordFromDB: coordFromDB)
+                        }//if coordinateIn
                         
                         switch what {
                            
@@ -65,10 +70,9 @@ class DBHandler{
                                     }
                                     ratings.append(rating)
                                 }//isMatch
-                            
+    
                             case "coordinate":
                                 coordinates.append(coordFromDB)
-
                             default:
                                 return
                         }//switch

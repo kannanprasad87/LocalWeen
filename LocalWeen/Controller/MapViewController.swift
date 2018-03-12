@@ -20,6 +20,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private var locationOfInterestMarker = GMSMarker()
     private var userMarker = GMSMarker()
     var locationManager = CLLocationManager()
+    private let dbHandler = DBHandler()
+   
     
     //Constants
     private let zoom:Float = 15
@@ -67,8 +69,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.mapView.delegate = self
         
         //Get all stored locations and place marker
-        self.getLocations()
-    }
+        dbHandler.getFor(coordinateIn: nil, what: "coordinate") { (arCoordinate) in
+            for coord in arCoordinate{
+                let lat = (coord as! CLLocationCoordinate2D).latitude
+                let long = (coord as! CLLocationCoordinate2D).longitude
+                self.placeMarker(latitude: lat, longitude: long, marker: self.locationOfInterestMarker, imageName: self.locationOfInterestImage)
+            }//for
+            
+        }//dbHandler
+        
+    }//ViewDidLoad
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else {
@@ -110,28 +120,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
-    func getLocations(){
-        let ref:DatabaseReference = Database.database().reference().child("locations")
-        ref.observeSingleEvent(of: .value) { (snapshot) in
-            if let snapshot =  snapshot.children.allObjects as? [DataSnapshot]{
-                for snap in snapshot {
-                    if let data = snap.value as? [String:Any]{
-                        let lattitude = data["latitude"]
-                        let longitude = data["longitude"]
-                        self.placeMarker(latitude: lattitude as! Double, longitude: longitude as! Double, marker: self.locationOfInterestMarker, imageName: self.locationOfInterestImage)
-                    }//end if
-                    else{
-                        fatalError("Can't get a Firebase snapshot")
-                    }
-                }//end for
-            }//end if
-        }//end ref
-    }//end getData
-    
     func placeMarker(latitude: Double, longitude:Double, marker: GMSMarker, imageName: String){
         
         let myMarker = marker
-        myMarker.map = nil
+        //myMarker.map = nil
         myMarker.map = self.mapView
         myMarker.icon = UIImage(named: imageName)
         myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
