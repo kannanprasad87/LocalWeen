@@ -17,8 +17,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
 
     //Map Support
     @IBOutlet weak var mapView: GMSMapView!
-    private var locationOfInterestMarker = GMSMarker()
-    private var userMarker = GMSMarker()
     var locationManager = CLLocationManager()
     private let dbHandler = DBHandler()
    
@@ -73,7 +71,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             for coord in arCoordinate{
                 let lat = (coord as! CLLocationCoordinate2D).latitude
                 let long = (coord as! CLLocationCoordinate2D).longitude
-                self.placeMarker(latitude: lat, longitude: long, marker: self.locationOfInterestMarker, imageName: self.locationOfInterestImage)
+                self.placeMarker(latitude: lat, longitude: long, imageName: self.locationOfInterestImage)
             }//for
             
         }//dbHandler
@@ -95,7 +93,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
         self.locationManager.stopUpdatingLocation()
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-        self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, marker: self.userMarker, imageName: userMarkerImage)
+        self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -120,14 +118,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
-    func placeMarker(latitude: Double, longitude:Double, marker: GMSMarker, imageName: String){
+    func placeMarker(latitude: Double, longitude:Double, imageName: String){
         
-        let myMarker = marker
-        //myMarker.map = nil
+        let myMarker = GMSMarker()
+    
         myMarker.map = self.mapView
         myMarker.icon = UIImage(named: imageName)
         myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
-        
     }
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
@@ -148,7 +145,7 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        placeMarker(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, marker: locationOfInterestMarker, imageName: questionMarker)
+        placeMarker(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, imageName: questionMarker)
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
         isSearchResult = true
         searchCoordinates = place.coordinate
