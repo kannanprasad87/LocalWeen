@@ -6,6 +6,10 @@ target 'LocalWeen' do
   use_frameworks!
 
   # Pods for LocalWeen
+  
+  #Cosmos Pod
+  pod 'Cosmos', '~> 15.0'
+  
   # Google Pods
    pod 'GoogleMaps'
    pod 'Firebase/Database'
@@ -19,7 +23,4 @@ target 'LocalWeen' do
    #Facebook
    pod 'FBSDKLoginKit'
 
-   
-   #Cosmos Pod
-   pod 'Cosmos', '~> 15.0'
 end

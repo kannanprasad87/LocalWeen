@@ -6,27 +6,27 @@
 //  Copyright © 2018 Bruce Bookman. All rights reserved.
 
 
+import Cosmos
 import UIKit
 import GoogleMaps
-import Cosmos
 import CoreLocation
-import FBSDKLoginKit
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    public var coord:CLLocationCoordinate2D? = CLLocationCoordinate2D()
-    private let dbHandler = DBHandler()
-    private let storageHandler = StorageHandler()
-    private let locationManager = CLLocationManager()
-    private var picker:UIImagePickerController?=UIImagePickerController()
+    let picker:UIImagePickerController? = UIImagePickerController()
+    var coord:CLLocationCoordinate2D? = CLLocationCoordinate2D()
+    let dbHandler = DBHandler()
+    let storageHandler = StorageHandler()
+    let locationManager = CLLocationManager()
+
     
     //Outlets
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var userChosenPhotoFromGalleryOrCamera: UIImageView!
-    @IBOutlet weak var averageRatingLabel: UILabel!
     
+    @IBOutlet weak var avLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         getLocationPhotos(coordinate: coord!)
         
         if cosmosView.rating <= 0  {
-            addButton.isEnabled = false
+            saveButton.isEnabled = false
         }//if
         cosmosView.didFinishTouchingCosmos = didFinishTouchingCosmos
         cosmosView.didTouchCosmos = didTouchCosmos
@@ -45,7 +45,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         
     }//viewDidLoad
     
-    private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
+    func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             guard let address = response?.firstResult(), let lines = address.lines else {
@@ -56,7 +56,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     }//reverseGeocodeCoordinate
     
     
-    @IBAction func addButton(_ sender: UIButton) {
+    @IBAction func saveButton(_ sender: UIButton) {
         guard let coordinate = self.coord else {
             fatalError("Can't get coordinate")
         }//guard
@@ -70,52 +70,22 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         }//else
     }//addButton
     
-    //MARK Cosmos Ratings
-    private func didTouchCosmos(_ rating: Double){
-        addButton.isEnabled = true
-    }//didTouchCosmos
     
-    private func didFinishTouchingCosmos(_ rating: Double){
-        addButton.isEnabled = true
-    }//didFinishTouchingCosmos
-    
-    //MARK: Choose Photo
-    @IBAction func addPhoto(_ sender: Any) {
-        openGallary()
-    }//addPhoto
-    
-    @IBAction func addPhotoFromCamera(_ sender: Any) {
-        openCamera()
-    }//addPhotoFromCamera
-    
-    private func openGallary()
-    {
-        picker!.allowsEditing = false
-        picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        present(picker!, animated: true, completion: nil)
-    }//openGallary
-    
-     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        userChosenPhotoFromGalleryOrCamera.image = chosenImage
+    @IBAction func photoButton(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            self.openCamera()
+        }))
         
-        dismiss(animated: true, completion: nil)
-        userChosenPhotoFromGalleryOrCamera.isHidden = false
-    }//imagePickerController
-    
-    private func openCamera() {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
-            picker!.allowsEditing = false
-            picker!.sourceType = UIImagePickerControllerSourceType.camera
-            picker!.cameraCaptureMode = .photo
-            present(picker!, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Camera Not Found", message: "This device has no Camera", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        }//else
-    }//openCamera
+        actionSheet.addAction(UIAlertAction(title: "Library", style: .default, handler: { (action:UIAlertAction) in
+            self.openGallary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }//photoButton
     
     //MARK: Get Location Photos
     func getLocationPhotos(coordinate:CLLocationCoordinate2D){
@@ -125,30 +95,5 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
             }//for
         }//dbHandler
     }//getLocationPhotos
-    
-    func averageRating(coordinate:CLLocationCoordinate2D){
-        var totalRating:Double = 0
-        dbHandler.getFor(coordinateIn: coordinate, what: "ratings") { (ratings) in
-            for rating in ratings {
-                totalRating += rating as! Double
-            }//for ratings
-            
-            guard totalRating >= 1.0 else { return}
-            var av:Double = 0
-            av = (Double(totalRating))/(Double(ratings.count))
-            if av < 1 {
-                self.averageRatingLabel.text = ""
-            }
-            let avRatingStr = String(format: "%.2f", ceil(av * 100)/100)
-            self.averageRatingLabel.text = "Average: " + avRatingStr
-        
-            
-        }//dbHandler
-    }//averageRating
-    
-    @IBAction func Back(_ sender: UIButton) {
-        performSegue(withIdentifier: "toMap", sender: self)
-    }//Back
-    
     
 }//LocationDetailViewController
