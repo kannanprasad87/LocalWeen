@@ -22,7 +22,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     
     //Outlets
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var userChosenPhotoFromGalleryOrCamera: UIImageView!
     @IBOutlet weak var averageRatingLabel: UILabel!
