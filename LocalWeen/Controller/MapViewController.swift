@@ -19,6 +19,23 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     private let dbHandler = DBHandler()
+    
+    /*
+     
+     There are three different sets of data to send in segue
+     1.  User simply sees self icon on map and no marker is in DB, so they want to add one
+         Therefore segueWhat = dataToSegue.userLocation
+     
+     2.  User has done a search and found a location that has no marker in DB, so they want to add.  Therefore segueWhat = dataToSegue.searchResult
+     
+     3.  User has tapped on a marker.  The marker could be either the marker showing the user location or the marker could be a location of interest.  In either case, the data will be the location of the marker.  Therefore segueWhat = dataToSegue.tappedMarker
+    
+    */
+    private enum dataToSegue {
+        case userLocation, tappedMarker, searchResult
+    }
+    
+    private var segueWhat:dataToSegue?
    
     
     //Constants
@@ -31,7 +48,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    var isSearchResult:Bool = Bool()
     var searchCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
@@ -41,7 +57,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.navigationItem.hidesBackButton = true
         
         //Search Bar
-        isSearchResult = false
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
         
@@ -94,28 +109,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.locationManager.stopUpdatingLocation()
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+        segueWhat = dataToSegue.userLocation
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        //WHAT TO DO HERE, NEED ANSWER TO ENUM QUESTION
+    
         
-        if isSearchResult {
-            //User searched for a location so maybe they want to add it
-                if let destination = segue.destination as? LocationDetialViewController {
-
-                    destination.coord = searchCoordinates
-                } else {
-                    return
-                }
-            
-        } else {
-                //User's current location
-                if let destination = segue.destination as? LocationDetialViewController {
-              
-                    destination.coord = locationManager.location?.coordinate
-                } else {
-                    return
-                }
-        }
     }
     
     func placeMarker(latitude: Double, longitude:Double, imageName: String){
@@ -133,6 +133,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        segueWhat = dataToSegue.tappedMarker
         performSegue(withIdentifier: "toDetail", sender: self)
         return false
     }
@@ -143,11 +144,11 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
+        segueWhat = dataToSegue.searchResult
         searchController?.isActive = false
         // Do something with the selected place.
         placeMarker(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, imageName: questionMarker)
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
-        isSearchResult = true
         searchCoordinates = place.coordinate
     }
     

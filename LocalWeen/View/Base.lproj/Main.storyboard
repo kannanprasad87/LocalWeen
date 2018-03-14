@@ -315,6 +315,7 @@
         <image name="no-image" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="X3e-4a-wME"/>
         <segue reference="gvA-Qx-L31"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>
