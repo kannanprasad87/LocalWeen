@@ -54,27 +54,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //hide the back button of navigation view controller, as it is not needed here
         self.navigationItem.hidesBackButton = true
-        
-        //Search Bar
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self as GMSAutocompleteResultsViewControllerDelegate
-        
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
-        
-        let subView = UIView(frame: CGRect(x: 0, y: 65.0, width: 350.0, height: 45.0))
-        
-        subView.addSubview((searchController?.searchBar)!)
-        view.addSubview(subView)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
-        
-        // When UISearchController presents the results view, present it in
-        // this view controller, not one further up the chain.
-        definesPresentationContext = true
+        setupSearchBar()
         
         //Location Manager and Map View Delegate
         self.locationManager.requestAlwaysAuthorization()
