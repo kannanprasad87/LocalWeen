@@ -57,17 +57,31 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     
     
     @IBAction func saveButton(_ sender: UIButton) {
-        guard let coordinate = self.coord else {
-            fatalError("Can't get coordinate")
-        }//guard
-        // store location rating and possibly image path if an image was chosen
-        if userChosenPhotoFromGalleryOrCamera.image != nil {
-            let imageName:String = storageHandler.upLoad(imageToUpload: userChosenPhotoFromGalleryOrCamera.image!)
-            dbHandler.addLocation(coordinate: coordinate, rating: cosmosView.rating, imageName: imageName)
-        } else {
-            //don't upload an image, just save the location rating and coord
-            dbHandler.addLocation(coordinate: coordinate, rating: cosmosView.rating, imageName: "")
-        }//else
+        let actionSheet = UIAlertController(title: "Save Agreement", message: "You certify that you are not submitting a location for any illegal or unethical reason.  You agree to the application Terms of Service", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Agree - Save", style: .default, handler: { (action:UIAlertAction) in
+           //Save the data
+            guard let coordinate = self.coord else {
+                fatalError("Can't get coordinate")
+            }//guard
+            
+            // store location rating and possibly image path if an image was chosen
+            if self.userChosenPhotoFromGalleryOrCamera.image != nil {
+                let imageName:String = self.storageHandler.upLoad(imageToUpload: self.userChosenPhotoFromGalleryOrCamera.image!)
+                self.dbHandler.addLocation(coordinate: coordinate, rating: self.cosmosView.rating, imageName: imageName)
+            } else {
+                //don't upload an image, just save the location rating and coord
+                self.dbHandler.addLocation(coordinate: coordinate, rating: self.cosmosView.rating, imageName: "")
+            }//else
+            self.performSegue(withIdentifier: "backToMap", sender: self.saveButton)
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Disagree - Cancel", style: .cancel, handler: { (action) in
+             self.performSegue(withIdentifier: "backToMap", sender: self.saveButton)
+        }))
+        
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
     }//addButton
     
     
