@@ -19,6 +19,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     private let dbHandler = DBHandler()
+    private var tappedMarkerLocation = CLLocationCoordinate2D()
+    private var singleSearchResult = CLLocationCoordinate2D()
     
     /*
      
@@ -114,9 +116,25 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         //WHAT TO DO HERE, NEED ANSWER TO ENUM QUESTION
-    
+        switch segueWhat {
+        case .userLocation?:
+            if let destination = segue.destination as? LocationDetialViewController {
+                destination.coord = self.locationManager.location?.coordinate
+            } else { return }
+        case .tappedMarker?:
+            if let destination = segue.destination as? LocationDetialViewController {
+                destination.coord = self.tappedMarkerLocation
+            } else {return}
+        case .searchResult?:
+            if let destination = segue.destination as? LocationDetialViewController {
+                destination.coord = singleSearchResult
+                print("blah")
+            } else {return}
+        default:
+            print("goodbye")
+        }
+    }//prepare
         
-    }
     
     func placeMarker(latitude: Double, longitude:Double, imageName: String){
         
@@ -134,6 +152,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         segueWhat = dataToSegue.tappedMarker
+        self.tappedMarkerLocation = marker.position
         performSegue(withIdentifier: "toDetail", sender: self)
         return false
     }
@@ -144,6 +163,7 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
+        singleSearchResult = place.coordinate
         segueWhat = dataToSegue.searchResult
         searchController?.isActive = false
         // Do something with the selected place.
