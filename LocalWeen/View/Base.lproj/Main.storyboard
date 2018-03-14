@@ -234,7 +234,6 @@
                                         <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="saveButton:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="Zfg-Mt-MVS"/>
-                                            <segue destination="Ldp-YH-622" kind="show" id="gvA-Qx-L31"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz6-OJ-FaS" userLabel="Photo">
@@ -284,6 +283,7 @@
                         <outlet property="cosmosView" destination="A7i-vX-imb" id="7Rp-4s-ukM"/>
                         <outlet property="saveButton" destination="xiy-hP-tDB" id="FTC-zd-kHn"/>
                         <outlet property="userChosenPhotoFromGalleryOrCamera" destination="8pv-L3-sL5" id="Zo2-R3-6yd"/>
+                        <segue destination="Ldp-YH-622" kind="show" identifier="backToMap" id="ffd-Mp-pkl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAC-Ao-Tbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,7 +306,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVc-Ex-J9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-201" y="116"/>
+            <point key="canvasLocation" x="-266" y="116"/>
         </scene>
     </scenes>
     <resources>
@@ -315,7 +315,7 @@
         <image name="no-image" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gvA-Qx-L31"/>
+        <segue reference="ffd-Mp-pkl"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>
 </document>
