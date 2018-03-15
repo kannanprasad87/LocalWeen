@@ -12,6 +12,7 @@ import FirebaseDatabase
 import GoogleSignIn
 import GooglePlaces
 import FBSDKLoginKit
+import SwiftyBeaver
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -40,7 +41,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private var segueWhat:dataToSegue?
    
     
-    //Constants
     private let zoom:Float = 15
     let locationOfInterestImage = "hhouseicon"
     let userMarkerImage = "witchicon"
@@ -90,7 +90,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         guard let location = locations.first else {
             return
         }
-        self.locationManager.stopUpdatingLocation()
+        //self.locationManager.stopUpdatingLocation()
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
         segueWhat = dataToSegue.userLocation
