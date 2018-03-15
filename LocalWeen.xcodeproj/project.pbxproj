@@ -23,6 +23,7 @@
 		CEF1145320576A7200001525 /* LocationDetialViewController+Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145220576A7100001525 /* LocationDetialViewController+Ratings.swift */; };
 		CEF1145520576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145420576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift */; };
 		CEF1145720576ED600001525 /* LocationDetailViewController+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145620576ED600001525 /* LocationDetailViewController+Camera.swift */; };
+		CEF170A1205B11AB00A6C9A3 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF170A0205B11AB00A6C9A3 /* SwiftyBeaver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CEF1145220576A7100001525 /* LocationDetialViewController+Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetialViewController+Ratings.swift"; sourceTree = "<group>"; };
 		CEF1145420576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailViewController+PhotoGallery.swift"; sourceTree = "<group>"; };
 		CEF1145620576ED600001525 /* LocationDetailViewController+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailViewController+Camera.swift"; sourceTree = "<group>"; };
+		CEF170A0205B11AB00A6C9A3 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
 		E2D54351178AF22D43741005 /* Pods-LocalWeen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalWeen.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF170A1205B11AB00A6C9A3 /* SwiftyBeaver.framework in Frameworks */,
 				3BA9703D3C93AAADC438F805 /* Pods_LocalWeen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +76,7 @@
 		C548130A5A22A4340C61DBB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEF170A0205B11AB00A6C9A3 /* SwiftyBeaver.framework */,
 				C52BD55132D16716DBB1917A /* Pods_LocalWeen.framework */,
 			);
 			name = Frameworks;
@@ -157,6 +161,7 @@
 				CEC17DF9204A194E0075351E /* Resources */,
 				EE9AB2EBD4A9A2EEFE824A5A /* [CP] Embed Pods Frameworks */,
 				31781AB0B205DC282D19216D /* [CP] Copy Pods Resources */,
+				CEF170A2205B11D300A6C9A3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,6 +265,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalWeen/Pods-LocalWeen-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CEF170A2205B11D300A6C9A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyBeaver.framework",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/SwiftyBeaver.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		EE9AB2EBD4A9A2EEFE824A5A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -455,6 +475,10 @@
 				CODE_SIGN_ENTITLEMENTS = LocalWeen/LocalWeen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YYK5R5P6D3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocalWeen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brucebookman.LocalWeen;
@@ -472,6 +496,10 @@
 				CODE_SIGN_ENTITLEMENTS = LocalWeen/LocalWeen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YYK5R5P6D3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocalWeen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brucebookman.LocalWeen;

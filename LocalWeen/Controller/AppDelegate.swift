@@ -12,6 +12,9 @@ import GoogleSignIn
 import GoogleMaps
 import GooglePlaces
 import FBSDKCoreKit
+import SwiftyBeaver
+
+
 
 class socialProfile{
     var usrGivenName = ""
@@ -27,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        setupSwiftyBeaverLogging()
+        
         //Google Firebase
         FirebaseApp.configure()
         
@@ -44,6 +49,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func setupSwiftyBeaverLogging(){
+    
+        let console = ConsoleDestination()
+        console.format = "$DHH:mm:ss$d $C$L$c: $M"
+        SwiftyBeaver.addDestination(console)
+        let platform = SBPlatformDestination(appID: "pgxG5z",
+                                             appSecret: "rYlivwwdlfaKyfBSbhgU8yNmt5bcNNdn",
+                                             encryptionKey: "RlrWwk0ciktIadaslZ17oenoabydnzyy")
+        
+        SwiftyBeaver.addDestination(platform)
+        let file = FileDestination()
+        SwiftyBeaver.addDestination(file)
+
+    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let googleAuthentication = GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
         
