@@ -22,6 +22,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private let dbHandler = DBHandler()
     private var tappedMarkerLocation = CLLocationCoordinate2D()
     private var singleSearchResult = CLLocationCoordinate2D()
+    private let userMarker = GMSMarker()
     
     /*
      
@@ -61,7 +62,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         //Location Manager and Map View Delegate
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        SwiftyBeaver.info("Request for startUpdatingLocation")
+        self.locationManager.startUpdatingLocation()
+        
         self.locationManager.startMonitoringSignificantLocationChanges()
+        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.delegate = self
         self.mapView.delegate = self
         
@@ -79,18 +85,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else {
+            SwiftyBeaver.info("authorizedWhenInUse = \(String(describing: status ))")
+            self.mapView.settings.myLocationButton = true
             return
         }
-        self.locationManager.startUpdatingLocation()
-        self.mapView.isMyLocationEnabled = true
-        self.mapView.settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             return
         }
-        //self.locationManager.stopUpdatingLocation()
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
         segueWhat = dataToSegue.userLocation
@@ -120,12 +124,28 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func placeMarker(latitude: Double, longitude:Double, imageName: String){
         
-        let myMarker = GMSMarker()
-    
-        myMarker.map = self.mapView
-        myMarker.icon = UIImage(named: imageName)
-        myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
-    }
+        if imageName == userMarkerImage {
+            SwiftyBeaver.info("!!!!!!! Placing userMarker !!!!!!!")
+            SwiftyBeaver.info("placeMarker: imageName == userMarkerImage")
+            SwiftyBeaver.info("Placing user icon")
+            
+            userMarker.map = self.mapView
+            
+            SwiftyBeaver.info("userMarker.map = \(String(describing: userMarker.map))")
+            userMarker.icon = UIImage(named: imageName)
+            SwiftyBeaver.info("userMarker.image = \(String(describing: imageName))")
+            userMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
+            SwiftyBeaver.info("userMarker.position = \(String(describing: latitude)) , \(String(describing: longitude)) ")
+         
+            
+        } else {
+            SwiftyBeaver.info("Placing Haunted House")
+            let myMarker = GMSMarker()
+            myMarker.map = self.mapView
+            myMarker.icon = UIImage(named: imageName)
+            myMarker.position = CLLocationCoordinate2DMake(latitude, longitude)
+        }
+    }//placeMarker
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signOut()
