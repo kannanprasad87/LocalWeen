@@ -15,7 +15,7 @@ extension MapViewController {
         //Location Manager and Map View Delegate
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.startUpdatingLocation()
         self.locationManager.startMonitoringSignificantLocationChanges()
         self.locationManager.pausesLocationUpdatesAutomatically = false
@@ -37,6 +37,7 @@ extension MapViewController {
         }
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+        self.locationManager.stopUpdatingLocation()
         segueWhat = dataToSegue.userLocation
     }
 }
