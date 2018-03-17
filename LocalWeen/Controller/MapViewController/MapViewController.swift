@@ -113,7 +113,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        locationManager.startUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         directionsButton.isEnabled = true
         segueWhat = dataToSegue.tappedMarker
         self.tappedMarkerLocation = marker.position
@@ -122,7 +122,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     @IBAction func didTapDirections(_ sender: UIButton) {
-        locationManager.startUpdatingLocation()
+        directionsButton.isEnabled = false
         guard let from = locationManager.location?.coordinate else {
             SwiftyBeaver.warning("didTapDirections: could not get user's current location for driving directions")
             return
