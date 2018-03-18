@@ -34,6 +34,7 @@ class WelcomeViewController: UIViewController {
         
         //if user already logged in to FB, go to map
         if FBSDKAccessToken.current() != nil{
+            SwiftyBeaver.verbose("FBSDKAccessToken.current() != nil, goToMap")
             goToMap()
         }
         initialUISetups()
