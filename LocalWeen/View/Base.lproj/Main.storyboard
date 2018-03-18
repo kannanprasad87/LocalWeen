@@ -115,12 +115,25 @@
                                             <segue destination="BYZ-38-t0r" kind="show" id="gIk-lJ-S3n"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqq-1q-ykL" userLabel="Directions">
+                                        <rect key="frame" x="8" y="8" width="80" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="EIz-fc-23n"/>
+                                        </constraints>
+                                        <state key="normal" title="Directions"/>
+                                        <connections>
+                                            <action selector="didTapDirections:" destination="Ldp-YH-622" eventType="touchUpInside" id="ODT-qn-qA4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Eqq-1q-ykL" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="topMargin" id="4G0-WV-IyV"/>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="centerX" secondItem="wrf-3v-3A8" secondAttribute="centerX" id="ATH-RO-nHW"/>
                                     <constraint firstAttribute="height" constant="30" id="EY1-O3-bj4"/>
+                                    <constraint firstItem="Eqq-1q-ykL" firstAttribute="leading" secondItem="wrf-3v-3A8" secondAttribute="leadingMargin" id="L1m-iK-7zr"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="bottom" secondItem="wrf-3v-3A8" secondAttribute="bottom" id="cle-Al-wTh"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Eqq-1q-ykL" secondAttribute="bottom" id="fi9-FB-3hy"/>
                                     <constraint firstAttribute="bottom" secondItem="9ZX-Gr-f0a" secondAttribute="bottomMargin" constant="8" id="kVM-aF-noS"/>
                                     <constraint firstItem="dX2-K6-HjO" firstAttribute="trailing" secondItem="wrf-3v-3A8" secondAttribute="trailing" constant="-5" id="olN-o7-R6v"/>
                                     <constraint firstItem="9ZX-Gr-f0a" firstAttribute="top" secondItem="wrf-3v-3A8" secondAttribute="top" id="zJK-Ln-OrK"/>
@@ -139,6 +152,7 @@
                         <viewLayoutGuide key="safeArea" id="7Ll-BQ-ez5"/>
                     </view>
                     <connections>
+                        <outlet property="directionsButton" destination="Eqq-1q-ykL" id="KuP-ya-pcU"/>
                         <outlet property="mapView" destination="Rrp-kk-jgr" id="qie-Ra-OfJ"/>
                     </connections>
                 </viewController>
@@ -170,7 +184,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A7i-vX-imb" userLabel="Ratings" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="A7i-vX-imb" userLabel="Ratings" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="136" y="135" width="104" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -315,6 +329,7 @@
         <image name="no-image" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="X3e-4a-wME"/>
         <segue reference="ffd-Mp-pkl"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>

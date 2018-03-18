@@ -13,6 +13,7 @@ import GoogleSignIn
 import GooglePlaces
 import FBSDKLoginKit
 import SwiftyBeaver
+import MapKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -36,6 +37,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var resultView: UITextView?
     var searchCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
+    //Directions Support
+    @IBOutlet weak var directionsButton: UIButton!
+    
+    
     /*
      
      There are three different sets of data to send in segue
@@ -56,6 +61,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Directions button is disabled until user taps on maker
+        directionsButton.isEnabled = false
+        
         //hide the back button of navigation view controller, as it is not needed here
         self.navigationItem.hidesBackButton = true
         self.setupSearchBar()
@@ -98,16 +107,48 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
+        locationManager.stopUpdatingLocation()
         GIDSignIn.sharedInstance().signOut()
         FBSDKLoginManager().logOut()
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        locationManager.stopUpdatingLocation()
+        directionsButton.isEnabled = true
         segueWhat = dataToSegue.tappedMarker
         self.tappedMarkerLocation = marker.position
         performSegue(withIdentifier: "toDetail", sender: self)
         return false
     }
+    
+    @IBAction func didTapDirections(_ sender: UIButton) {
+        directionsButton.isEnabled = false
+        guard let from = locationManager.location?.coordinate else {
+            SwiftyBeaver.warning("didTapDirections: could not get user's current location for driving directions")
+            return
+        }
+        
+        let to = self.tappedMarkerLocation
+        
+        SwiftyBeaver.info("Directions from \(String(describing: from)) , to \(String(describing: tappedMarkerLocation))")
+        let url = "http://maps.apple.com/maps?saddr=\(from.latitude),\(from.longitude)&daddr=\(to.latitude),\(to.longitude)"
+        //UIApplication.shared.openURL(URL(string:url)!)
+        let regionDistance:CLLocationDistance = 1000
+        let regionSpan = MKCoordinateRegionMakeWithDistance(tappedMarkerLocation, regionDistance, regionDistance)
+        var options = [String : Any]()
+            options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span),
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        UIApplication.shared.open(URL(string:url)!, options: options) { (finished) in
+            if finished {
+                SwiftyBeaver.info("Done opening Maps = \(String(describing: finished))")
+            }
+        }
+    }
+    
+    
     
 }//MapViewController
 
