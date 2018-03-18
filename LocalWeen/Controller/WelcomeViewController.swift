@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
 import FirebaseAuth
+import SwiftyBeaver
 
 
 fileprivate enum Defaults {
@@ -97,34 +98,49 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith loginResult: FBSDKLoginManagerLoginResult!, error: Error!) {
         if error != nil {
             showAlert(withTitle: "Error", message: error as! String)
+            SwiftyBeaver.error("WelcomeViewController: FBSDKLoginButtonDelegate - loginButton")
+            SwiftyBeaver.error("Error on Facebook login \(String(describing: error))")
         } else if loginResult.isCancelled {
             return
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            
             Auth.auth().signIn(with: credential) { (user, error) in
                 if let error = error {
                     self.showAlert(withTitle: "Error", message: error as! String)
+                    SwiftyBeaver.error("Auth.auth().signIn Error authorizing with Firebase")
+                    SwiftyBeaver.error(error as! String)
                     return
                 }//error
                 //Successful log in
              
+                SwiftyBeaver.verbose("Successful Firebase Auth")
+                
                 let params = ["fields": "email, first_name, last_name, picture"]
                 FBSDKGraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, graphResult, error in
                     if let error = error {
-                        print("Error getting FB social info \(String(describing: error))")
+                        SwiftyBeaver.error("Error getting FB social info \(String(describing: error))")
                         return
                     }//error
                     let fields = graphResult as? [String:Any]
                     
                     if FBSDKAccessToken.current().hasGranted("email"){
+                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted email TRUE")
                         social.usrEmail = fields!["email"] as! String
-                    }//email
+                    } else {
+                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted email FALSE")
+                    }
                  
                     if FBSDKAccessToken.current().hasGranted("first_name") {
+                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted first_name TRUE")
                         social.usrGivenName = fields!["first_name"] as! String
-                    }//first_name
+                    } else {
+                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted first_name FALSE")
+                    }
                     
                     if FBSDKAccessToken.current().hasGranted("picture") {
+                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted picture TRUE")
+                        
                         let url = fields!["picture"] as! URL
                         print("url \(String(describing: url))")
                         let session = URLSession.shared
@@ -137,6 +153,9 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                             }//data
                         } .resume() //session.dataTask
                     }//FBSDKAccessToken
+                    else {
+                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted picture FALSE")
+                    }
                 }//FBSDKGraphRequest
             ) //completion handler //FBSDKGraphRequest
         }//Auth

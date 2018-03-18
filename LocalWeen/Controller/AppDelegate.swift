@@ -16,6 +16,7 @@ import SwiftyBeaver
 
 class socialProfile{
     var usrGivenName = ""
+    var usrFamilyName = ""
     var usrEmail = ""
     var usrProfilePhoto = UIImage()
 }
@@ -75,8 +76,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Either the user already signed out or an error occured during Google Authentication")
             return
         }
-        social.usrEmail = user.profile.email
-        social.usrGivenName = user.profile.givenName
+        guard case social.usrEmail? = user.profile.email else {
+            SwiftyBeaver.warning("AppDelegate-sign- could not get social.usrEmail")
+            return
+        }
+        
+        SwiftyBeaver.debug("AppDelegate-sign-ssocial.usrEmail = \(String(describing: social.usrEmail))")
+        
+        guard case social.usrGivenName? = user.profile.givenName else {
+            SwiftyBeaver.warning("Google sign in - could not get user given name")
+            return
+        }
+        
+        SwiftyBeaver.debug("AppDelegate-sign-social.usrGivenName = \(String(describing: social.usrGivenName))")
+        
+        guard case social.usrFamilyName? = user.profile.familyName else {
+            SwiftyBeaver.warning("Google sign in - could not get user familyName")
+            return
+        }
+        
+         SwiftyBeaver.debug("AppDelegate-sign-ssocial.usrFamilyName = \(String(describing: social.usrGivenName))")
+        
         if user.profile.hasImage {
             guard let url = (user.profile.imageURL(withDimension: 120)) else {
                 print("No url found for user social profile.  user.profile.imageURL is not found")
@@ -86,11 +106,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let session = URLSession.shared
             session.dataTask(with: url) { (data, response, error) in
                 if let error = error {
-                    print("Error getting data from URL: \(error)")
+                    SwiftyBeaver.warning("AppDelegate-sign-session.dataTask Failed")
+                    SwiftyBeaver.warning("Error getting data from URL: \(error)")
                 }
                 if let data = data {
                     social.usrProfilePhoto  = UIImage(data: data)!
-                 }
+                    SwiftyBeaver.debug("AppDelegate-sign-social.usrProfilePhoto SUCCESS ")
+                } else {
+                    SwiftyBeaver.warning("AppDelegate-sign-social.usrProfilePhoto FAILED")
+                }
+                
             }.resume() //session.dataTask
         }//if user.profile.hasImage
         

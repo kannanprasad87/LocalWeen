@@ -9,6 +9,8 @@
 import FirebaseDatabase
 import CoreLocation
 
+//social
+
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
     
