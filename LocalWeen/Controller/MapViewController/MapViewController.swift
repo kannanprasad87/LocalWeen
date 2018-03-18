@@ -107,11 +107,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
+        locationManager.stopUpdatingLocation()
         GIDSignIn.sharedInstance().signOut()
         FBSDKLoginManager().logOut()
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        locationManager.stopUpdatingLocation()
         directionsButton.isEnabled = true
         segueWhat = dataToSegue.tappedMarker
         self.tappedMarkerLocation = marker.position
@@ -120,7 +122,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     @IBAction func didTapDirections(_ sender: UIButton) {
-        
+        directionsButton.isEnabled = false
         guard let from = locationManager.location?.coordinate else {
             SwiftyBeaver.warning("didTapDirections: could not get user's current location for driving directions")
             return

@@ -12,13 +12,15 @@ import SwiftyBeaver
 
 extension MapViewController {
     func startUpLocationManager(){
+        SwiftyBeaver.verbose("startUpLocationManager()")
         //Location Manager and Map View Delegate
-        self.locationManager.requestAlwaysAuthorization()
+        SwiftyBeaver.verbose("locationManager.requestWhenInUseAuthorization()")
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        SwiftyBeaver.verbose("locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation")
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.startUpdatingLocation()
-        self.locationManager.startMonitoringSignificantLocationChanges()
-        self.locationManager.pausesLocationUpdatesAutomatically = false
+        self.locationManager.activityType = .automotiveNavigation
+        self.locationManager.pausesLocationUpdatesAutomatically = true
         self.locationManager.delegate = self
         self.mapView.delegate = self
     }
@@ -33,10 +35,25 @@ extension MapViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
+            SwiftyBeaver.warning("locationManager didUpdateLocations could not get user location")
             return
         }
+        
+        SwiftyBeaver.info("locationManager didUpdateLocation to \(String(describing: location))")
+        
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
         segueWhat = dataToSegue.userLocation
+    }
+    
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        SwiftyBeaver.info("Location Manager has PAUSED location updates to save battery")
+        SwiftyBeaver.info("Lowering desiredAccuracy to kCLLocationAccuracyHundredMeters")
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+    
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager){
+        SwiftyBeaver.info("Location Manager has RESUMED location updates to save battery")
+         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     }
 }
