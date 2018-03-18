@@ -17,8 +17,8 @@ extension MapViewController {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.startUpdatingLocation()
-        self.locationManager.startMonitoringSignificantLocationChanges()
-        self.locationManager.pausesLocationUpdatesAutomatically = false
+        self.locationManager.activityType = .automotiveNavigation
+        self.locationManager.pausesLocationUpdatesAutomatically = true
         self.locationManager.delegate = self
         self.mapView.delegate = self
     }
@@ -37,7 +37,14 @@ extension MapViewController {
         }
         self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
-        self.locationManager.stopUpdatingLocation()
         segueWhat = dataToSegue.userLocation
+    }
+    
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        SwiftyBeaver.info("Location Manager has PAUSED location updates to save battery")
+    }
+    
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager){
+        SwiftyBeaver.info("Location Manager has RESUMED location updates to save battery")
     }
 }

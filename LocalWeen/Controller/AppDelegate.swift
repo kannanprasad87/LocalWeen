@@ -14,8 +14,6 @@ import GooglePlaces
 import FBSDKCoreKit
 import SwiftyBeaver
 
-
-
 class socialProfile{
     var usrGivenName = ""
     var usrEmail = ""
