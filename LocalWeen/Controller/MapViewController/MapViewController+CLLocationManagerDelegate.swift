@@ -41,8 +41,18 @@ extension MapViewController {
         
         SwiftyBeaver.info("locationManager didUpdateLocation to \(String(describing: location))")
         
-        self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-        self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+        if stopCamera {
+            SwiftyBeaver.verbose("stopCamera = \(String(describing: stopCamera))")
+            SwiftyBeaver.info("The user pinched on map, so camera is not going to change positions.  Place the marker")
+            self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+        } else {
+            SwiftyBeaver.info("User did not pinch on map, so move the camera and place marker")
+            self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+
+        }
+        
         segueWhat = dataToSegue.userLocation
     }
     

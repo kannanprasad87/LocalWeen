@@ -15,7 +15,7 @@ extension MapViewController {
         
         if imageName == userMarkerImage {
             SwiftyBeaver.info("!!!!!!! Placing userMarker !!!!!!!")
-            SwiftyBeaver.info("placeMarker: imageName == userMarkerImage")
+            SwiftyBeaver.verbose("placeMarker: imageName == userMarkerImage: \(String(describing: userMarkerImage))")
             SwiftyBeaver.info("Placing user icon")
             
             userMarker.map = self.mapView
