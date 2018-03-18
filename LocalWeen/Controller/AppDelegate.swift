@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if user.profile.hasImage {
             guard let url = (user.profile.imageURL(withDimension: 120)) else {
-                print("No url found for user social profile.  user.profile.imageURL is not found")
+                SwiftyBeaver.warning("AppDelegate-sign user.profile.imageURL is not found")
                 return
             }
            

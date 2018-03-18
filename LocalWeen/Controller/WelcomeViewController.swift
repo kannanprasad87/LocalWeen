@@ -97,9 +97,9 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith loginResult: FBSDKLoginManagerLoginResult!, error: Error!) {
         if error != nil {
-            showAlert(withTitle: "Error", message: error as! String)
+            showAlert(withTitle: "Error", message: error.localizedDescription)
             SwiftyBeaver.error("WelcomeViewController: FBSDKLoginButtonDelegate - loginButton")
-            SwiftyBeaver.error("Error on Facebook login \(String(describing: error))")
+            SwiftyBeaver.error("Error on Facebook login \(String(describing: error.localizedDescription))")
         } else if loginResult.isCancelled {
             return
         } else {
@@ -178,15 +178,81 @@ extension WelcomeViewController: GIDSignInUIDelegate {
 extension WelcomeViewController: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error{
-            print((String(describing: error) ))
-        }
+        SwiftyBeaver.debug("WelcomeViewController: GIDSignInDelegate - sign")
         
-        //MARK: GET GOOGLE PROFILE DATA HERE
-        if signIn.hasAuthInKeychain(){
-            goToMap()
+        if (error) != nil {
+            SwiftyBeaver.error("Either the user already signed out or an error occured during Google Authentication")
+            SwiftyBeaver.error(error.localizedDescription)
+            return
+        }//error
+        
+        if user.profile.email != nil {
+            social.usrEmail = user.profile.email
+        } else {
+            SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate sign- could not get social.usrEmail")
+        }//social.usrEmail
+        
+        SwiftyBeaver.debug("WelcomeViewController: GIDSignInUIDelegate -sign-ssocial.usrEmail = \(String(describing: social.usrEmail))")
+        
+        if user.profile.givenName != nil {
+        
+            social.usrGivenName = user.profile.givenName
+            
+        } else {
+            SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate Google sign in - could not get user given name")
+        }//social.usrGivenName
+        
+        SwiftyBeaver.debug("WelcomeViewController: GIDSignInUIDelegate-sign-social.usrGivenName = \(String(describing: social.usrGivenName))")
+        
+        if user.profile.familyName != nil {
+            social.usrFamilyName = user.profile.familyName
+            
+        } else {
+            SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate Google sign in - could not get user familyName")
+        }//social.usrFamilyName
+        
+        SwiftyBeaver.debug("WelcomeViewController: GIDSignInUIDelegate-sign-ssocial.usrFamilyName = \(String(describing: social.usrGivenName))")
+        
+        if user.profile.hasImage {
+            guard let url = (user.profile.imageURL(withDimension: 120)) else {
+                SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate-sign user.profile.imageURL is not found")
+                return
+            }//let url
+        
+            let session = URLSession.shared
+            session.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate -sign session.dataTask Failed")
+                    SwiftyBeaver.warning("Error getting data from URL: \(error)")
+                }//let error
+        if let data = data {
+            social.usrProfilePhoto  = UIImage(data: data)!
+            SwiftyBeaver.debug("WelcomeViewController: GIDSignInUIDelegate-sign-social.usrProfilePhoto SUCCESS ")
+        } else {
+            SwiftyBeaver.warning("WelcomeViewController: GIDSignInUIDelegate-sign-social.usrProfilePhoto FAILED")
+        }//let data
+        
+                }.resume() //session.dataTask
+        }//if user.profile.hasImage
+        
+        guard let authentication = user.authentication else {
+            SwiftyBeaver.error("WelcomeViewController: GIDSignInUIDelegate-sign")
+            SwiftyBeaver.error("authentication = user.authentication")
+            SwiftyBeaver.error("Firebase Authentication failed")
+            return
+            
         }
-    }
-}
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+        accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if (error) != nil {
+                SwiftyBeaver.error("Google Authentification Failed \(String(describing: error?.localizedDescription))")
+            } else {
+                SwiftyBeaver.info("Google Firebase Authentification Success")
+                self.goToMap()
+        }//error
+    }//Auth
+}//sign
+}//extention
 
 
