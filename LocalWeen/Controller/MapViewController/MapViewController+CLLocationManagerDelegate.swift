@@ -14,8 +14,9 @@ extension MapViewController {
     func startUpLocationManager(){
         SwiftyBeaver.verbose("startUpLocationManager()")
         //Location Manager and Map View Delegate
-        //self.locationManager.requestAlwaysAuthorization()
+        SwiftyBeaver.verbose("locationManager.requestWhenInUseAuthorization()")
         self.locationManager.requestWhenInUseAuthorization()
+        SwiftyBeaver.verbose("locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation")
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.startUpdatingLocation()
         self.locationManager.activityType = .automotiveNavigation
