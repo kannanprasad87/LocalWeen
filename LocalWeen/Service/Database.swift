@@ -8,8 +8,8 @@
 
 import FirebaseDatabase
 import CoreLocation
+import SwiftyBeaver
 
-//social
 
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
@@ -27,11 +27,12 @@ class DBHandler{
                     if let data = snap.value as? [String:Any]{
                         //Get the latitude and longitude for matching
                         guard let latitude = data["latitude"] else {
-                            print("Could not get lattitude in getFor request")
+                            
+                            SwiftyBeaver.warning("DBHandler Could not get lattitude in getFor request")
                             return
                         }
                         guard let longitude = data["longitude"] else {
-                            print("Could not get longitude in getFor request")
+                             SwiftyBeaver.warning("DBHandler Could not get longitude in getFor request")
                             return
                         }
                     
@@ -48,7 +49,7 @@ class DBHandler{
                            
                             case "fileNames":
                                 guard let filename = data["image_name"] else {
-                                    print("Can't get filename")
+                                   SwiftyBeaver.warning("DBHandler Can't get filename for image")
                                     return
                                 }
                                 if isMatch {
@@ -58,7 +59,7 @@ class DBHandler{
                             case "ratings":
                             
                                 guard let ratingData = data["rating"] else {
-                                    print("Can't get rating")
+                                    SwiftyBeaver.warning("DBHandler Can't get ratingData")
                                     return
                                 }
                                 
@@ -68,7 +69,7 @@ class DBHandler{
                                     if rating >= 1.0 {
                                         ratings.append(rating)
                                     } else {
-                                        print("Rating was less than 1")
+                                        SwiftyBeaver.warning("DBHandler ratingData Rating was less than 1")
                                     }
                                     ratings.append(rating)
                                 }//isMatch

@@ -93,6 +93,12 @@ class WelcomeViewController: UIViewController {
     
 }//fetchUserProfileData
 
+
+/*
+ 
+ FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: nil) {
+ */
+
 // MARK: - Facebook SDK Button Delegates
 extension WelcomeViewController: FBSDKLoginButtonDelegate {
     
@@ -102,6 +108,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
             SwiftyBeaver.error("WelcomeViewController: FBSDKLoginButtonDelegate - loginButton")
             SwiftyBeaver.error("Error on Facebook login \(String(describing: error.localizedDescription))")
         } else if loginResult.isCancelled {
+            SwiftyBeaver.info("<#T##message: Any##Any#>")
             return
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
@@ -109,54 +116,51 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
             Auth.auth().signIn(with: credential) { (user, error) in
                 if let error = error {
                     self.showAlert(withTitle: "Error", message: error as! String)
+                    SwiftyBeaver.error("func loginButton() for Facebook")
                     SwiftyBeaver.error("Auth.auth().signIn Error authorizing with Firebase")
                     SwiftyBeaver.error(error as! String)
                     return
                 }//error
                 //Successful log in
              
-                SwiftyBeaver.verbose("Successful Firebase Auth")
+                SwiftyBeaver.verbose("Auth.auth().signIn Successful Firebase Auth")
                 
                 let params = ["fields": "email, first_name, last_name, picture"]
                 FBSDKGraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, graphResult, error in
                     if let error = error {
-                        SwiftyBeaver.error("Error getting FB social info \(String(describing: error))")
+                        SwiftyBeaver.error("FBSDKGraphRequest Error getting FB social info \(String(describing: error))")
                         return
                     }//error
                     let fields = graphResult as? [String:Any]
                     
-                    if FBSDKAccessToken.current().hasGranted("email"){
-                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted email TRUE")
-                        social.usrEmail = fields!["email"] as! String
-                    } else {
-                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted email FALSE")
-                    }
-                 
-                    if FBSDKAccessToken.current().hasGranted("first_name") {
-                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted first_name TRUE")
-                        social.usrGivenName = fields!["first_name"] as! String
-                    } else {
-                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted first_name FALSE")
+                    SwiftyBeaver.verbose("FBSDKGraphRequest graphResults")
+                    SwiftyBeaver.verbose("\(String(describing: fields))")
+                    
+                    guard let email = fields!["email"] else {
+                        SwiftyBeaver.warning("FBSDKGraphRequest can't get email")
+                        return
                     }
                     
-                    if FBSDKAccessToken.current().hasGranted("picture") {
-                        SwiftyBeaver.debug("FBSDKAccessToken.current().hasGranted picture TRUE")
-                        
-                        let url = fields!["picture"] as! URL
-                        print("url \(String(describing: url))")
-                        let session = URLSession.shared
-                        session.dataTask(with: url) { (data, response, error) in
-                            if let error = error {
-                                print("Error getting data from URL: \(error)")
-                            }//error
+                    SwiftyBeaver.verbose("FBSDKGraphRequest got email \(String(describing: email))")
+                    
+                    guard let firstName = fields!["first_name"] else {
+                        SwiftyBeaver.warning("FBSDKGraphRequest can't get first_name")
+                        return
+                    }
+                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
+                    
+                    let url = fields!["picture"] as! URL
+                    SwiftyBeaver.verbose("FBSDKGraphRequest got url \(String(describing: url))")
+                    let session = URLSession.shared
+                    session.dataTask(with: url) { (data, response, error) in
+                        if let error = error {
+                            SwiftyBeaver.error("FBSDKGraphRequest Error getting data from URL: \(error)")
+                        }//error
                             if let data = data {
                                 social.usrProfilePhoto  = UIImage(data: data)!
+                                SwiftyBeaver.verbose("FBSDKGraphRequest recieved social.usrProfilePhoto ")
                             }//data
                         } .resume() //session.dataTask
-                    }//FBSDKAccessToken
-                    else {
-                        SwiftyBeaver.warning("FBSDKAccessToken.current().hasGranted picture FALSE")
-                    }
                 }//FBSDKGraphRequest
             ) //completion handler //FBSDKGraphRequest
         }//Auth
@@ -247,9 +251,9 @@ extension WelcomeViewController: GIDSignInDelegate {
         accessToken: authentication.accessToken)
         Auth.auth().signIn(with: credential) { (user, error) in
             if (error) != nil {
-                SwiftyBeaver.error("Google Authentification Failed \(String(describing: error?.localizedDescription))")
+                SwiftyBeaver.error("WelcomeViewController: GIDSignInDelegate Google Authentification Failed \(String(describing: error?.localizedDescription))")
             } else {
-                SwiftyBeaver.info("Google Firebase Authentification Success")
+                SwiftyBeaver.info("WelcomeViewController: GIDSignInDelegate Google Firebase Authentification Success")
                 self.goToMap()
         }//error
     }//Auth
