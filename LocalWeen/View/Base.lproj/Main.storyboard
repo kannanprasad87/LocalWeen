@@ -97,6 +97,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-kk-jgr" userLabel="Map" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="617"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dc7-Zt-W5f" appends="YES" id="X4n-nZ-vQz"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrf-3v-3A8" userLabel="Menu">
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
@@ -157,6 +161,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNM-Fe-Y1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="dc7-Zt-W5f">
+                    <connections>
+                        <action selector="didPinch:" destination="Ldp-YH-622" id="OIR-AC-zrR"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1255" y="116"/>
         </scene>
@@ -329,7 +338,6 @@
         <image name="no-image" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X3e-4a-wME"/>
         <segue reference="ffd-Mp-pkl"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>
