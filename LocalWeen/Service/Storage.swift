@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import FirebaseStorage
 import FirebaseStorageUI
+import SwiftyBeaver
 
 struct StorageHandler {
     
@@ -36,16 +37,16 @@ struct StorageHandler {
         
         let uploadTask = uploadImageRef.putData(imageData, metadata: metadata) { (metadata, error) in
             if metadata == nil{
-                fatalError("Missing image metadata")
+                SwiftyBeaver.error("Missing image metadata")
             }
             if error != nil {
-                fatalError("uploadTask had an error \(String(describing: error))")
+                SwiftyBeaver.error("uploadTask had an error \(String(describing: error))")
             }
             
         }
         
         uploadTask.observe(.progress) { (snapshot) in
-            print(snapshot.progress ?? "NO MORE PROGRESS")
+            SwiftyBeaver.verbose(print(snapshot.progress ?? "NO MORE PROGRESS"))
         }
         
         uploadTask.resume()

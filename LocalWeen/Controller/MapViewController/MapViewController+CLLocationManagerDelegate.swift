@@ -35,11 +35,11 @@ extension MapViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
-            SwiftyBeaver.warning("locationManager didUpdateLocations could not get user location")
+            SwiftyBeaver.warning("Could not get user location")
             return
         }
         
-        SwiftyBeaver.info("locationManager didUpdateLocation to \(String(describing: location))")
+        SwiftyBeaver.info("didUpdateLocation to \(String(describing: location))")
         
         if stopCamera {
             SwiftyBeaver.verbose("stopCamera = \(String(describing: stopCamera))")
