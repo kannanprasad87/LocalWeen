@@ -111,6 +111,8 @@ class DBHandler{
                         "postDate": ServerValue.timestamp()
             ] as [String : Any]
         self.ref.childByAutoId().setValue(location)
+        SwiftyBeaver.verbose("DBHandler addLocation.  Location data is:")
+        SwiftyBeaver.verbose("\(String(describing: location))")
     }//end setLocation
     
     func addUser(email: String, firstName: String, lastName: String){
@@ -119,6 +121,7 @@ class DBHandler{
                         "last_name": lastName
         ]
         self.userRef.childByAutoId().setValue(userData)
+        SwiftyBeaver.verbose("DBHandler addUser \(String(describing: userData))")
     }//addUser
     
 }//DBHandler
