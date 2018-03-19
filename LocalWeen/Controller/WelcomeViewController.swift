@@ -146,7 +146,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                     }
                     social.usrGivenName = firstName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
-                    
+                    self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrGivenName, lastName: social.usrFamilyName)
                     
                    /*********
                      FOR THE MOMENT, FORGET ABOUT THE PHOTO!
