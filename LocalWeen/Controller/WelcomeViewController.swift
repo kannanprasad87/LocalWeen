@@ -146,6 +146,15 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                     }
                     social.usrGivenName = firstName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
+                    
+                    guard let lastName = fields!["last_name"] else {
+                        SwiftyBeaver.warning("FBSDKGraphRequest can't get last_name")
+                        return
+                    }
+                    
+                    social.usrFamilyName = lastName as! String
+                    SwiftyBeaver.verbose("FBSDKGraphRequest got last_name \(String(describing: lastName))")
+                    
                     self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrGivenName, lastName: social.usrFamilyName)
                     
                    /*********
@@ -230,6 +239,8 @@ extension WelcomeViewController: GIDSignInDelegate {
         
                 }.resume() //session.dataTask
         }//if user.profile.hasImage
+        
+        self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrGivenName, lastName: social.usrFamilyName)
         
         guard let authentication = user.authentication else {
             SwiftyBeaver.error("WelcomeViewController: GIDSignInUIDelegate-sign")
