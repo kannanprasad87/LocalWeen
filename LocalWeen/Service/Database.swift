@@ -112,6 +112,13 @@ class DBHandler{
         self.ref.childByAutoId().setValue(location)
     }//end setLocation
     
+    func addUser(email: String, firstName: String, lastName: String){
+        let userData = ["email": email,
+                        "first_name": firstName,
+                        "last_name": lastName
+        ]
+        self.userRef.childByAutoId().setValue(userData)
+    }//addUser
     
 }//DBHandler
     
