@@ -13,7 +13,7 @@ import SwiftyBeaver
 
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
-    
+    var userRef:DatabaseReference! = Database.database().reference().child("users")
     
     func getFor(coordinateIn:CLLocationCoordinate2D?, what: String, completion: @escaping ([Any]) -> ())  {
         
