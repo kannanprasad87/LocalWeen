@@ -51,14 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupSwiftyBeaverLogging(){
     
         let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss$d $C$L$c: $M"
+        console.format = "$DHH:mm:ss$d $N.$F():$l $L: $M"
         SwiftyBeaver.addDestination(console)
         let platform = SBPlatformDestination(appID: "pgxG5z",
                                              appSecret: "rYlivwwdlfaKyfBSbhgU8yNmt5bcNNdn",
                                              encryptionKey: "RlrWwk0ciktIadaslZ17oenoabydnzyy")
-        
+        platform.format = "$DHH:mm:ss$d $N.$F():$l $L: $M"
         SwiftyBeaver.addDestination(platform)
         let file = FileDestination()
+        file.format = "$DHH:mm:ss$d $N.$F():$l $L: $M"
         SwiftyBeaver.addDestination(file)
 
     }

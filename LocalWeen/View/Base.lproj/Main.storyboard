@@ -269,14 +269,28 @@
                                             <action selector="photoButton:" destination="NPJ-QS-Arv" eventType="touchUpInside" id="9UA-7K-2pL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcs-Ij-z3n" userLabel="Removal Request">
+                                        <rect key="frame" x="87" y="0.0" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="sAZ-oa-abK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="Removal Request"/>
+                                        <connections>
+                                            <segue destination="7wn-tL-CSG" kind="show" id="z6o-t9-nyD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Mz6-OJ-FaS" firstAttribute="top" secondItem="8Pj-Iw-mT3" secondAttribute="topMargin" id="00s-ob-pPB"/>
+                                    <constraint firstAttribute="bottom" secondItem="dcs-Ij-z3n" secondAttribute="bottom" id="0Z8-Ar-Gx1"/>
                                     <constraint firstAttribute="height" constant="30" id="7i3-dY-IJ9"/>
                                     <constraint firstItem="xiy-hP-tDB" firstAttribute="top" secondItem="8Pj-Iw-mT3" secondAttribute="topMargin" id="ALX-Yo-FDo"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Mz6-OJ-FaS" secondAttribute="bottom" id="EXd-KI-nab"/>
                                     <constraint firstItem="xiy-hP-tDB" firstAttribute="bottom" secondItem="8Pj-Iw-mT3" secondAttribute="bottomMargin" id="EZM-6F-XMB"/>
+                                    <constraint firstItem="dcs-Ij-z3n" firstAttribute="centerX" secondItem="8Pj-Iw-mT3" secondAttribute="centerX" id="Qvg-yY-sSK"/>
+                                    <constraint firstItem="dcs-Ij-z3n" firstAttribute="top" secondItem="8Pj-Iw-mT3" secondAttribute="top" id="TBc-RN-VWh"/>
                                     <constraint firstItem="Mz6-OJ-FaS" firstAttribute="trailing" secondItem="8Pj-Iw-mT3" secondAttribute="trailingMargin" constant="-5" id="Z2z-Am-D7S"/>
                                     <constraint firstItem="xiy-hP-tDB" firstAttribute="leading" secondItem="8Pj-Iw-mT3" secondAttribute="leadingMargin" constant="5" id="aVn-UX-3rW"/>
                                 </constraints>
@@ -338,8 +352,8 @@
         <image name="no-image" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X3e-4a-wME"/>
         <segue reference="ffd-Mp-pkl"/>
+        <segue reference="z6o-t9-nyD"/>
         <segue reference="gIk-lJ-S3n"/>
     </inferredMetricsTieBreakers>
 </document>
