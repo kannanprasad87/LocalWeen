@@ -50,6 +50,7 @@ class WelcomeViewController: UIViewController {
     
     fileprivate func facebookButtonSetup() {
         // Facebook Login Button Setups
+        fbLoginButton.readPermissions = ["email","public_profile"]
         view.addSubview(fbLoginButton)
         fbLoginButton.delegate = self
         if let facebookButtonHeightConstraint = fbLoginButton.constraints.first(where: { $0.firstAttribute == .height }) {
@@ -93,12 +94,6 @@ class WelcomeViewController: UIViewController {
     
 }//fetchUserProfileData
 
-
-/*
- 
- FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: nil) {
- */
-
 // MARK: - Facebook SDK Button Delegates
 extension WelcomeViewController: FBSDKLoginButtonDelegate {
     
@@ -108,7 +103,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
             SwiftyBeaver.error("WelcomeViewController: FBSDKLoginButtonDelegate - loginButton")
             SwiftyBeaver.error("Error on Facebook login \(String(describing: error.localizedDescription))")
         } else if loginResult.isCancelled {
-            SwiftyBeaver.info("<#T##message: Any##Any#>")
+            SwiftyBeaver.verbose("loginResult.isCancelled")
             return
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
@@ -141,28 +136,34 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                         return
                     }
                     
+                    social.usrEmail = email as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got email \(String(describing: email))")
                     
                     guard let firstName = fields!["first_name"] else {
                         SwiftyBeaver.warning("FBSDKGraphRequest can't get first_name")
                         return
                     }
-                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
+                    social.usrGivenName = firstName as! String
+                    SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
                     
-                    let url = fields!["picture"] as! URL
-                    SwiftyBeaver.verbose("FBSDKGraphRequest got url \(String(describing: url))")
-                    let session = URLSession.shared
-                    session.dataTask(with: url) { (data, response, error) in
-                        if let error = error {
-                            SwiftyBeaver.error("FBSDKGraphRequest Error getting data from URL: \(error)")
-                        }//error
-                            if let data = data {
-                                social.usrProfilePhoto  = UIImage(data: data)!
-                                SwiftyBeaver.verbose("FBSDKGraphRequest recieved social.usrProfilePhoto ")
-                            }//data
-                        } .resume() //session.dataTask
+                    let dictionary = NSDictionary()
+                    guard
+                        let picture = dictionary["picture"] as? NSDictionary,
+                        let picData = picture["data"] as? NSDictionary,
+                        let modifiedUrlStr = picData["url"] as? String
+                        else {
+                            SwiftyBeaver.warning("FBSDKGraphRequest Could not get dictionary for profile photo")
+                            return
+                        }//guard
+                    guard let profilePhoto = self.getImageFromUrl(sourceUrl: modifiedUrlStr) else {
+                        SwiftyBeaver.warning("FBSDKGraphRequest getImageFromUrl FAILED ")
+                        return
+                    }
+                    SwiftyBeaver.verbose("FBSDKGraphRequest social.usrProfilePhoto = SUCCESS")
+                    social.usrProfilePhoto = profilePhoto
+                    
                 }//FBSDKGraphRequest
-            ) //completion handler //FBSDKGraphRequest
+            ) //Graph completion handler //FBSDKGraphRequest
         }//Auth
     }//else
         self.goToMap()
@@ -258,6 +259,15 @@ extension WelcomeViewController: GIDSignInDelegate {
         }//error
     }//Auth
 }//sign
+    
+    func getImageFromUrl(sourceUrl: String) -> UIImage? {
+        if let url = URL(string: sourceUrl) {
+            if let imageData = try? Data(contentsOf:url) {
+                return UIImage(data: imageData)
+            }
+        }
+        return nil
+    }
 }//extention
 
 
