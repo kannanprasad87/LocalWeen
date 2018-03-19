@@ -120,6 +120,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         return true
     }
     
+    //MARK: Sign Out
     
     @IBAction func didTapSignOut(_ sender: UIButton) {
         SwiftyBeaver.verbose("didTapSignOut stopCamera = false")
@@ -131,6 +132,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         SwiftyBeaver.verbose("FBSDKLoginManager().logOut()")
         FBSDKLoginManager().logOut()
     }
+    
+    //MARK: Did Tap Marker
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         SwiftyBeaver.info("Setting stopCamera true when marker tapped so camera is at marker and not following user")
