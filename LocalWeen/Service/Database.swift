@@ -107,6 +107,7 @@ class DBHandler{
                         "longitude": coordinate.longitude,
                         "rating": rating,
                         "image_name": imageName!,
+                        "usrEmail": social.usrEmail,
                         "postDate": ServerValue.timestamp()
             ] as [String : Any]
         self.ref.childByAutoId().setValue(location)
