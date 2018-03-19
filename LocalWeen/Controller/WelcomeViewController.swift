@@ -24,6 +24,7 @@ class WelcomeViewController: UIViewController {
     
     fileprivate let fbLoginButton = FBSDKLoginButton()
     fileprivate let googleSignInButton = GIDSignInButton()
+    lazy var dbHandler:DBHandler = DBHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +146,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                     }
                     social.usrGivenName = firstName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
+                    
                     
                    /*********
                      FOR THE MOMENT, FORGET ABOUT THE PHOTO!
