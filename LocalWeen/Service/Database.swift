@@ -8,10 +8,12 @@
 
 import FirebaseDatabase
 import CoreLocation
+import SwiftyBeaver
+
 
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
-    
+    var userRef:DatabaseReference! = Database.database().reference().child("users")
     
     func getFor(coordinateIn:CLLocationCoordinate2D?, what: String, completion: @escaping ([Any]) -> ())  {
         
@@ -25,11 +27,12 @@ class DBHandler{
                     if let data = snap.value as? [String:Any]{
                         //Get the latitude and longitude for matching
                         guard let latitude = data["latitude"] else {
-                            print("Could not get lattitude in getFor request")
+                            
+                            SwiftyBeaver.warning("DBHandler Could not get lattitude in getFor request")
                             return
                         }
                         guard let longitude = data["longitude"] else {
-                            print("Could not get longitude in getFor request")
+                             SwiftyBeaver.warning("DBHandler Could not get longitude in getFor request")
                             return
                         }
                     
@@ -46,7 +49,7 @@ class DBHandler{
                            
                             case "fileNames":
                                 guard let filename = data["image_name"] else {
-                                    print("Can't get filename")
+                                   SwiftyBeaver.warning("DBHandler Can't get filename for image")
                                     return
                                 }
                                 if isMatch {
@@ -56,7 +59,7 @@ class DBHandler{
                             case "ratings":
                             
                                 guard let ratingData = data["rating"] else {
-                                    print("Can't get rating")
+                                    SwiftyBeaver.warning("DBHandler Can't get ratingData")
                                     return
                                 }
                                 
@@ -66,7 +69,7 @@ class DBHandler{
                                     if rating >= 1.0 {
                                         ratings.append(rating)
                                     } else {
-                                        print("Rating was less than 1")
+                                        SwiftyBeaver.warning("DBHandler ratingData Rating was less than 1")
                                     }
                                     ratings.append(rating)
                                 }//isMatch
@@ -104,11 +107,22 @@ class DBHandler{
                         "longitude": coordinate.longitude,
                         "rating": rating,
                         "image_name": imageName!,
+                        "usrEmail": social.usrEmail,
                         "postDate": ServerValue.timestamp()
             ] as [String : Any]
         self.ref.childByAutoId().setValue(location)
+        SwiftyBeaver.verbose("DBHandler addLocation.  Location data is:")
+        SwiftyBeaver.verbose("\(String(describing: location))")
     }//end setLocation
     
+    func addUser(email: String, firstName: String, lastName: String){
+        let userData = ["email": email,
+                        "first_name": firstName,
+                        "last_name": lastName
+        ]
+        self.userRef.childByAutoId().setValue(userData)
+        SwiftyBeaver.verbose("DBHandler addUser \(String(describing: userData))")
+    }//addUser
     
 }//DBHandler
     
