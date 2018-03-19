@@ -103,12 +103,13 @@ class DBHandler{
 
     
     func addLocation(coordinate:CLLocationCoordinate2D, rating: Double, imageName: String?){
+        let whatsTheTime = WhatTimeIsIt()
         let location = ["latitude": coordinate.latitude,
                         "longitude": coordinate.longitude,
                         "rating": rating,
                         "image_name": imageName!,
                         "usrEmail": social.usrEmail,
-                        "postDate": ServerValue.timestamp()
+                        "postDate": whatsTheTime.theTimeIs
             ] as [String : Any]
         self.ref.childByAutoId().setValue(location)
         SwiftyBeaver.verbose("DBHandler addLocation.  Location data is:")

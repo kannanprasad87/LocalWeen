@@ -20,6 +20,7 @@
 		CEC17E17204A27240075351E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E16204A27240075351E /* WelcomeViewController.swift */; };
 		CEC17E1B204A30A30075351E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E1A204A30A30075351E /* MapViewController.swift */; };
 		CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */; };
+		CEE45B6F20601C6800659C59 /* WhatTimeIsIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE45B6E20601C6800659C59 /* WhatTimeIsIt.swift */; };
 		CEF1145320576A7200001525 /* LocationDetialViewController+Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145220576A7100001525 /* LocationDetialViewController+Ratings.swift */; };
 		CEF1145520576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145420576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift */; };
 		CEF1145720576ED600001525 /* LocationDetailViewController+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1145620576ED600001525 /* LocationDetailViewController+Camera.swift */; };
@@ -47,6 +48,7 @@
 		CEC17E16204A27240075351E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		CEC17E1A204A30A30075351E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CEC17E1C204A660B0075351E /* LocationDetialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetialViewController.swift; sourceTree = "<group>"; };
+		CEE45B6E20601C6800659C59 /* WhatTimeIsIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatTimeIsIt.swift; sourceTree = "<group>"; };
 		CEF1145220576A7100001525 /* LocationDetialViewController+Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetialViewController+Ratings.swift"; sourceTree = "<group>"; };
 		CEF1145420576B8B00001525 /* LocationDetailViewController+PhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailViewController+PhotoGallery.swift"; sourceTree = "<group>"; };
 		CEF1145620576ED600001525 /* LocationDetailViewController+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailViewController+Camera.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				CE23C558204B4B32004E090A /* Database.swift */,
 				CE23C55A204B5B0E004E090A /* Storage.swift */,
+				CEE45B6E20601C6800659C59 /* WhatTimeIsIt.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			files = (
 				CEC17E1D204A660B0075351E /* LocationDetialViewController.swift in Sources */,
 				CEF170AA205B470500A6C9A3 /* MapViewController+PlaceMarker.swift in Sources */,
+				CEE45B6F20601C6800659C59 /* WhatTimeIsIt.swift in Sources */,
 				CEC17DFF204A194E0075351E /* AppDelegate.swift in Sources */,
 				CE567EA4204E178700C457BD /* LegalViewController.swift in Sources */,
 				CEF170A6205B43D300A6C9A3 /* MapViewController+GMSAutocomplete.swift in Sources */,

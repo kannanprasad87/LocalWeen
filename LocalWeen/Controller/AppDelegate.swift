@@ -14,6 +14,8 @@ import GooglePlaces
 import FBSDKCoreKit
 import SwiftyBeaver
 
+//MARK: Social Profile
+
 class socialProfile{
     var usrGivenName = ""
     var usrFamilyName = ""
@@ -22,6 +24,7 @@ class socialProfile{
 }
 
 let social = socialProfile()
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Facebook sign in
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
         
         return true
     }

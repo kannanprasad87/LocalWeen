@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>issuer</key>
+        <string>https://dev-734971.oktapreview.com/oauth2/default</string>
+        <key>clientId</key>
+        <string>{clientIdValue}</string>
+        <key>redirectUri</key>
+        <string>com.oktapreview.{yourOrg}:/callback</string>
+        <key>scopes</key>
+        <array>
+            <string>offline_access</string>
+            <string>openid</string>
+            <string>profile</string>
+        </array>
+    </dict>
+</plist>
