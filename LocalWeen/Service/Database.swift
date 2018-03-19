@@ -13,7 +13,7 @@ import SwiftyBeaver
 
 class DBHandler{
     var ref:DatabaseReference! = Database.database().reference().child("locations")
-    
+    var userRef:DatabaseReference! = Database.database().reference().child("users")
     
     func getFor(coordinateIn:CLLocationCoordinate2D?, what: String, completion: @escaping ([Any]) -> ())  {
         
@@ -107,11 +107,22 @@ class DBHandler{
                         "longitude": coordinate.longitude,
                         "rating": rating,
                         "image_name": imageName!,
+                        "usrEmail": social.usrEmail,
                         "postDate": ServerValue.timestamp()
             ] as [String : Any]
         self.ref.childByAutoId().setValue(location)
+        SwiftyBeaver.verbose("DBHandler addLocation.  Location data is:")
+        SwiftyBeaver.verbose("\(String(describing: location))")
     }//end setLocation
     
+    func addUser(email: String, firstName: String, lastName: String){
+        let userData = ["email": email,
+                        "first_name": firstName,
+                        "last_name": lastName
+        ]
+        self.userRef.childByAutoId().setValue(userData)
+        SwiftyBeaver.verbose("DBHandler addUser \(String(describing: userData))")
+    }//addUser
     
 }//DBHandler
     
