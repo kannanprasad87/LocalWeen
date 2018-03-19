@@ -142,7 +142,7 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                         SwiftyBeaver.warning("FBSDKGraphRequest can't get first_name")
                         return
                     }
-                    social.usrGivenName = firstName as! String
+                    social.usrFirstName = firstName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
                     
                     guard let lastName = fields!["last_name"] else {
@@ -150,10 +150,10 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                         return
                     }
                     
-                    social.usrFamilyName = lastName as! String
+                    social.usrLastName = lastName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got last_name \(String(describing: lastName))")
                     
-                    self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrGivenName, lastName: social.usrFamilyName)
+                    self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrFirstName, lastName: social.usrLastName)
                     
                    /*********
                      FOR THE MOMENT, FORGET ABOUT THE PHOTO!
@@ -197,22 +197,22 @@ extension WelcomeViewController: GIDSignInDelegate {
         
         if user.profile.givenName != nil {
         
-            social.usrGivenName = user.profile.givenName
+            social.usrFirstName = user.profile.givenName
             
         } else {
             SwiftyBeaver.warning("Google sign in - could not get user given name")
         }//social.usrGivenName
         
-        SwiftyBeaver.debug("social.usrGivenName = \(String(describing: social.usrGivenName))")
+        SwiftyBeaver.debug("social.usrGivenName = \(String(describing: social.usrFirstName))")
         
         if user.profile.familyName != nil {
-            social.usrFamilyName = user.profile.familyName
+            social.usrLastName = user.profile.familyName
             
         } else {
             SwiftyBeaver.warning("Google sign in - could not get user familyName")
         }//social.usrFamilyName
         
-        SwiftyBeaver.verbose("social.usrFamilyName = \(String(describing: social.usrGivenName))")
+        SwiftyBeaver.verbose("social.usrFamilyName = \(String(describing: social.usrFirstName))")
         
         if user.profile.hasImage {
             guard let url = (user.profile.imageURL(withDimension: 120)) else {
@@ -235,7 +235,7 @@ extension WelcomeViewController: GIDSignInDelegate {
                 }.resume() //session.dataTask
         }//if user.profile.hasImage
         
-        self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrGivenName, lastName: social.usrFamilyName)
+        self.dbHandler.addUser(email: social.usrEmail, firstName: social.usrFirstName, lastName: social.usrLastName)
         
         guard let authentication = user.authentication else {
             SwiftyBeaver.error("Firebase Authentication failed")

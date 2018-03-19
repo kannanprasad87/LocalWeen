@@ -15,8 +15,8 @@ import FBSDKCoreKit
 import SwiftyBeaver
 
 class socialProfile{
-    var usrGivenName = ""
-    var usrFamilyName = ""
+    var usrFirstName = ""
+    var usrLastName = ""
     var usrEmail = ""
     var usrProfilePhoto = UIImage()
 }
