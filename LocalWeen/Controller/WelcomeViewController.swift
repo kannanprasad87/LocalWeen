@@ -146,21 +146,9 @@ extension WelcomeViewController: FBSDKLoginButtonDelegate {
                     social.usrGivenName = firstName as! String
                     SwiftyBeaver.verbose("FBSDKGraphRequest got first_name \(String(describing: firstName))")
                     
-                    let dictionary = NSDictionary()
-                    guard
-                        let picture = dictionary["picture"] as? NSDictionary,
-                        let picData = picture["data"] as? NSDictionary,
-                        let modifiedUrlStr = picData["url"] as? String
-                        else {
-                            SwiftyBeaver.warning("FBSDKGraphRequest Could not get dictionary for profile photo")
-                            return
-                        }//guard
-                    guard let profilePhoto = self.getImageFromUrl(sourceUrl: modifiedUrlStr) else {
-                        SwiftyBeaver.warning("FBSDKGraphRequest getImageFromUrl FAILED ")
-                        return
-                    }
-                    SwiftyBeaver.verbose("FBSDKGraphRequest social.usrProfilePhoto = SUCCESS")
-                    social.usrProfilePhoto = profilePhoto
+                   /*********
+                     FOR THE MOMENT, FORGET ABOUT THE PHOTO!
+ ************/
                     
                 }//FBSDKGraphRequest
             ) //Graph completion handler //FBSDKGraphRequest
