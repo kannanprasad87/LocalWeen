@@ -7,6 +7,8 @@
 //
 import GooglePlaces
 import GoogleMaps
+import SwiftyBeaver
+
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
@@ -18,12 +20,12 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
         placeMarker(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, imageName: questionMarker)
         self.mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: zoom, bearing: 0, viewingAngle: 0)
         searchCoordinates = place.coordinate
+        SwiftyBeaver.verbose("searchCoordinates \(String(describing: searchCoordinates ))")
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didFailAutocompleteWithError error: Error){
-        // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
+        SwiftyBeaver.error("Error", error.localizedDescription )
     }
     
     // Turn the network activity indicator on and off again.

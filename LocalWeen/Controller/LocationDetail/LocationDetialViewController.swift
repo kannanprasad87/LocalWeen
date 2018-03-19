@@ -10,6 +10,7 @@ import Cosmos
 import UIKit
 import GoogleMaps
 import CoreLocation
+import SwiftyBeaver
 
 class LocationDetialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -61,7 +62,8 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
         actionSheet.addAction(UIAlertAction(title: "Agree - Save", style: .default, handler: { (action:UIAlertAction) in
            //Save the data
             guard let coordinate = self.coord else {
-                fatalError("Can't get coordinate")
+                SwiftyBeaver.error("Can't get coordinate")
+                return
             }//guard
             
             // store location rating and possibly image path if an image was chosen
@@ -105,7 +107,7 @@ class LocationDetialViewController: UIViewController, UIImagePickerControllerDel
     func getLocationPhotos(coordinate:CLLocationCoordinate2D){
         dbHandler.getFor(coordinateIn: coordinate, what: "fileNames") { (fileNames) in
             for file in fileNames{
-                print("\(String(describing: file))")
+                SwiftyBeaver.verbose("\(String(describing: file))")
             }//for
         }//dbHandler
     }//getLocationPhotos
