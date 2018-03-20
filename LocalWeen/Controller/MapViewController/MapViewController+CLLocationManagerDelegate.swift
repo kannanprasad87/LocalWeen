@@ -56,4 +56,8 @@ extension MapViewController {
         SwiftyBeaver.info("Location Manager has RESUMED location updates to save battery")
          self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
+        SwiftyBeaver.error("Location manager failed with error", error.localizedDescription)
+    }
 }

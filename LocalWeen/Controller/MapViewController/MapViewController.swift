@@ -165,9 +165,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             if finished {
             
                 SwiftyBeaver.info("Done opening Maps = \(String(describing: finished))")
-            }
-        }
-    }
+            }//finished
+        }//UIApplication
+    }//didTapDirections
     
     
     
