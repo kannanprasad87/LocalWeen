@@ -12,16 +12,14 @@ import SwiftyBeaver
 
 extension MapViewController {
     func startUpLocationManager(){
-        SwiftyBeaver.verbose("startUpLocationManager()")
         //Location Manager and Map View Delegate
-        SwiftyBeaver.verbose("locationManager.requestWhenInUseAuthorization()")
         self.locationManager.requestWhenInUseAuthorization()
-        SwiftyBeaver.verbose("locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation")
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.startUpdatingLocation()
         self.locationManager.activityType = .automotiveNavigation
         self.locationManager.pausesLocationUpdatesAutomatically = true
         self.locationManager.delegate = self
+        self.mapView.isMyLocationEnabled = true
         self.mapView.delegate = self
     }
     
@@ -34,26 +32,18 @@ extension MapViewController {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
         guard let location = locations.first else {
             SwiftyBeaver.warning("Could not get user location")
             return
         }
         
         SwiftyBeaver.info("didUpdateLocation to \(String(describing: location))")
-        
-        if stopCamera {
-            SwiftyBeaver.verbose("stopCamera = \(String(describing: stopCamera))")
-            SwiftyBeaver.info("The user pinched on map, so camera is not going to change positions.  Place the marker")
-            self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
-        } else {
-            SwiftyBeaver.info("User did not pinch on map, so move the camera and place marker")
-            self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        self.mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             
-            self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
-
-        }
+        self.placeMarker(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, imageName: userMarkerImage)
+         segueWhat = dataToSegue.userLocation
         
-        segueWhat = dataToSegue.userLocation
     }
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
