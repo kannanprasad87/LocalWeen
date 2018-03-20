@@ -19,7 +19,6 @@ extension MapViewController {
         self.locationManager.activityType = .automotiveNavigation
         self.locationManager.pausesLocationUpdatesAutomatically = true
         self.locationManager.delegate = self
-        self.mapView.isMyLocationEnabled = true
         self.mapView.delegate = self
     }
     
